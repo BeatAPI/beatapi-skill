@@ -19,5 +19,5 @@
 - Safe request templates and eight forward-testing scenarios.
 - OpenAPI contract lock, structural validator, tests, and CI.
 
-[Unreleased]: https://github.com/erickkkyt/beatapi-skill/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/erickkkyt/beatapi-skill/releases/tag/v0.1.0
+[Unreleased]: https://github.com/BeatAPI/beatapi-skill/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/BeatAPI/beatapi-skill/releases/tag/v0.1.0

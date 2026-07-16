@@ -2,7 +2,7 @@
 
 ## Artifact
 
-- Repository: `https://github.com/erickkkyt/beatapi-skill`
+- Repository: `https://github.com/BeatAPI/beatapi-skill`
 - Skill directory: `skills/beatapi-video`
 - Upload ZIP: `dist/beatapi-video-skill.zip` after
   `npm run submission:build`

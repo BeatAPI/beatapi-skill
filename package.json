@@ -17,10 +17,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/erickkkyt/beatapi-skill.git"
+    "url": "git+https://github.com/BeatAPI/beatapi-skill.git"
   },
   "bugs": {
-    "url": "https://github.com/erickkkyt/beatapi-skill/issues"
+    "url": "https://github.com/BeatAPI/beatapi-skill/issues"
   },
   "homepage": "https://docs.beatapi.io/",
   "keywords": [
