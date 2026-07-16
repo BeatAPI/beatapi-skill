@@ -7,11 +7,28 @@
   "scripts": {
     "contract:sync": "node scripts/contract.mjs --write",
     "contract:check": "node scripts/contract.mjs --check",
+    "validate:skill": "node scripts/validate-skill.mjs",
     "test": "node --test",
-    "verify": "npm run contract:check && npm test"
+    "verify": "npm run contract:check && npm run validate:skill && npm test"
   },
   "engines": {
     "node": ">=20.19.0 <21 || >=22.12.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erickkkyt/beatapi-skill.git"
+  },
+  "bugs": {
+    "url": "https://github.com/erickkkyt/beatapi-skill/issues"
+  },
+  "homepage": "https://beatapi.io/docs",
+  "keywords": [
+    "agent-skill",
+    "codex",
+    "beatapi",
+    "ai-video",
+    "music-video",
+    "ecommerce-video"
+  ],
   "license": "MIT"
 }

@@ -11,11 +11,18 @@ import { fileURLToPath } from "node:url";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const bundledPath = resolve(root, "contract/beatapi.openapi.yaml");
-const lockPath = resolve(root, "contract/contract.lock.json");
-const siblingSource = resolve(
+const skillBundledPath = resolve(
   root,
-  "../beatapi-examples/openapi/beatapi.yaml",
+  "skills/beatapi-video/references/beatapi.openapi.yaml",
 );
+const lockPath = resolve(root, "contract/contract.lock.json");
+const siblingSources = [
+  resolve(root, "../beatapi-examples/openapi/beatapi.yaml"),
+  resolve(root, "../../../beatapi-examples/openapi/beatapi.yaml"),
+];
+const siblingSource =
+  siblingSources.find((candidate) => existsSync(candidate)) ??
+  siblingSources[0];
 const sourcePath = process.env.BEATAPI_OPENAPI_SOURCE
   ? resolve(process.env.BEATAPI_OPENAPI_SOURCE)
   : siblingSource;
@@ -63,7 +70,9 @@ if (mode === "write") {
 
   const content = readFileSync(sourcePath);
   mkdirSync(dirname(bundledPath), { recursive: true });
+  mkdirSync(dirname(skillBundledPath), { recursive: true });
   writeFileSync(bundledPath, content);
+  writeFileSync(skillBundledPath, content);
   writeFileSync(
     lockPath,
     `${JSON.stringify(
@@ -82,7 +91,11 @@ if (mode === "write") {
 }
 
 if (!existsSync(bundledPath)) fail(`Missing bundled contract: ${bundledPath}`);
+if (!existsSync(skillBundledPath)) {
+  fail(`Missing Skill-bundled contract: ${skillBundledPath}`);
+}
 const bundled = readFileSync(bundledPath);
+const skillBundled = readFileSync(skillBundledPath);
 const lock = readLock();
 const bundledHash = sha256(bundled);
 
@@ -94,6 +107,11 @@ if (lock.sha256 !== bundledHash) {
 if (lock.openapiVersion !== openapiVersion(bundled.toString("utf8"))) {
   fail("Contract OpenAPI version does not match contract.lock.json.");
 }
+if (!skillBundled.equals(bundled)) {
+  fail(
+    "The contract inside the installable Skill has drifted. Run npm run contract:sync.",
+  );
+}
 if (existsSync(sourcePath)) {
   const source = readFileSync(sourcePath);
   if (!source.equals(bundled)) {
@@ -104,4 +122,3 @@ if (existsSync(sourcePath)) {
 }
 
 console.log(`BeatAPI OpenAPI contract verified (${bundledHash}).`);
-
