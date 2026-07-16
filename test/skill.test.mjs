@@ -69,3 +69,17 @@ test("the bundled contract contains every operation named by the Skill", () => {
     assert.match(contract, new RegExp(`operationId: ${operation}\\b`));
   }
 });
+
+test("the Skill prefers bundled MCP tools and retains a CLI fallback", () => {
+  const skill = readFileSync(new URL("SKILL.md", skillRoot), "utf8");
+  const commandMap = readFileSync(
+    new URL("references/api-workflows.md", skillRoot),
+    "utf8",
+  );
+
+  assert.match(skill, /Prefer the bundled BeatAPI MCP tools/);
+  assert.match(skill, /beatapi_check_setup/);
+  assert.match(skill, /fall back to the official `beatapi` CLI/);
+  assert.match(commandMap, /beatapi_create_music_video/);
+  assert.match(commandMap, /beatapi webhooks create/);
+});

@@ -9,7 +9,7 @@
 - Skill name: `beatapi-video`
 - Invocation: `$beatapi-video`
 - License: MIT
-- Product documentation: `https://beatapi.io/docs`
+- Product documentation: `https://docs.beatapi.io/`
 - API key creation: `https://beatapi.io/dashboard/apikeys`
 
 ## Before submission
@@ -21,8 +21,9 @@
 5. Confirm the Skill folder has no symlinks, generated caches, private media,
    credentials, or repository-only relative references.
 6. Test a fresh clone with the eight prompts in `evals/evals.json`.
-7. Confirm `beatapi` CLI installation and authentication instructions are
-   current.
+7. Confirm the listing distinguishes the two adapters: bundled BeatAPI MCP in
+   the complete Codex plugin, or the globally installed `beatapi` CLI for a
+   standalone Skill submission.
 8. Capture the repository URL, one-sentence description, categories, and
    support/security links required by the directory form.
 
@@ -36,7 +37,12 @@
 BeatAPI. The Skill safely uploads local media, checks credits and concurrency,
 supports automatic or manual storyboard composition, waits for asynchronous
 tasks, retrieves hosted output, manages webhooks, and preserves structured
-errors without exposing API keys.
+errors without exposing API keys. It prefers BeatAPI MCP tools supplied by the
+host and otherwise uses the official `beatapi` CLI.
+
+**Standalone prerequisite:** A Skills-only submission does not include an MCP
+server. Users therefore need Node.js and the globally installed `beatapi` CLI
+unless their host already supplies compatible BeatAPI MCP tools.
 
 **Categories:** Video, Developer Tools, Automation, AI Media
 

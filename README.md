@@ -22,24 +22,28 @@ copy of the public BeatAPI OpenAPI contract.
 - “Upload these local inputs and wait for the hosted result.”
 - “Configure BeatAPI success and failure webhooks.”
 
-The Skill uses the official `beatapi` CLI. It does not store credentials and
-never asks the user to paste an API key into a conversation.
+The Skill prefers BeatAPI MCP tools when the host provides them. The complete
+Codex plugin bundles those tools. A standalone Skill installation falls back
+to the official `beatapi` CLI. Neither adapter asks the user to paste an API
+key into a conversation.
 
 ## Requirements
 
-- Node.js 20.19+ or 22.12+
-- `npm install --global beatapi`
 - A BeatAPI customer account and API key
 - An Agent Skills-compatible host
+- One execution adapter:
+  - BeatAPI MCP tools supplied by the host or the complete Codex plugin; or
+  - Node.js 20.19+ / 22.12+ and `npm install --global beatapi`
 
-Create a key at <https://beatapi.io/dashboard/apikeys>, then authenticate in a
-terminal:
+Create a key at <https://beatapi.io/dashboard/apikeys>. For a standalone Skill
+using the CLI fallback, authenticate in a terminal:
 
 ```bash
 beatapi auth login
 ```
 
-For CI or ephemeral environments, set `BEATAPI_API_KEY` outside the prompt.
+For MCP servers, CI, or ephemeral environments, set `BEATAPI_API_KEY` outside
+the prompt.
 
 ## Install
 

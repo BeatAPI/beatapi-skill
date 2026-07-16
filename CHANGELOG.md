@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Prefer bundled BeatAPI MCP tools while retaining the official CLI fallback.
+- Clarify the standalone Skill and complete Codex plugin prerequisites.
+- Use the live BeatAPI documentation homepage and reproducible CI installs.
+
 ## [Unreleased]
 
 ## [0.1.0] - 2026-07-17
