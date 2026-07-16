@@ -4,6 +4,8 @@
 
 - Repository: `https://github.com/erickkkyt/beatapi-skill`
 - Skill directory: `skills/beatapi-video`
+- Upload ZIP: `dist/beatapi-video-skill.zip` after
+  `npm run submission:build`
 - Skill name: `beatapi-video`
 - Invocation: `$beatapi-video`
 - License: MIT

@@ -8,8 +8,9 @@
     "contract:sync": "node scripts/contract.mjs --write",
     "contract:check": "node scripts/contract.mjs --check",
     "validate:skill": "node scripts/validate-skill.mjs",
+    "submission:build": "node scripts/build-submission.mjs",
     "test": "node --test",
-    "verify": "npm run contract:check && npm run validate:skill && npm test"
+    "verify": "npm run contract:check && npm run validate:skill && npm test && npm run submission:build"
   },
   "engines": {
     "node": ">=20.19.0 <21 || >=22.12.0"

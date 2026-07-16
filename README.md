@@ -93,6 +93,14 @@ skills/beatapi-video/
 See [docs/submission-checklist.md](docs/submission-checklist.md) before
 submitting the GitHub repository or Skill folder to a directory.
 
+Build a ready-to-upload ZIP with:
+
+```bash
+npm run submission:build
+```
+
+The artifact is written to `dist/beatapi-video-skill.zip`.
+
 ## Security
 
 Do not place API keys, webhook secrets, private media, or customer task data in
