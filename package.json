@@ -1,8 +1,8 @@
 {
   "name": "beatapi-skill",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
-  "description": "Agent Skill for creating and managing BeatAPI AI video workflows.",
+  "description": "Agent Skill for managing BeatAPI async and realtime AI video APIs.",
   "type": "module",
   "scripts": {
     "contract:sync": "node scripts/contract.mjs --write",
@@ -29,7 +29,8 @@
     "beatapi",
     "ai-video",
     "music-video",
-    "ecommerce-video"
+    "ecommerce-video",
+    "realtime-video"
   ],
   "license": "MIT"
 }

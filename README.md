@@ -1,7 +1,7 @@
 # BeatAPI Video Agent Skill
 
 Official Agent Skill for creating, monitoring, and troubleshooting BeatAPI
-Music Video and Ecommerce Video workflows.
+Music Video, Ecommerce Video, and Realtime Video sessions.
 
 The installable Skill is self-contained at:
 
@@ -21,6 +21,7 @@ copy of the public BeatAPI OpenAPI contract.
 - “Check why my BeatAPI task failed.”
 - “Upload these local inputs and wait for the hosted result.”
 - “Configure BeatAPI success and failure webhooks.”
+- “Create a 60-second Realtime Video session for my web app.”
 
 The Skill prefers BeatAPI MCP tools when the host provides them. The complete
 Codex plugin bundles those tools. A standalone Skill installation falls back
@@ -91,7 +92,8 @@ skills/beatapi-video/
     ├── beatapi.openapi.yaml
     ├── credits-and-limits.md
     ├── errors-and-recovery.md
-    └── manual-music-video.md
+    ├── manual-music-video.md
+    └── realtime-video.md
 ```
 
 See [docs/submission-checklist.md](docs/submission-checklist.md) before
