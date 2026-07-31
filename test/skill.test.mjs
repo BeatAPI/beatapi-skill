@@ -65,6 +65,9 @@ test("the bundled contract contains every operation named by the Skill", () => {
     "getWebhookEndpoint",
     "updateWebhookEndpoint",
     "deleteWebhookEndpoint",
+    "createRealtimeSession",
+    "getRealtimeSession",
+    "closeRealtimeSession",
   ]) {
     assert.match(contract, new RegExp(`operationId: ${operation}\\b`));
   }
@@ -82,4 +85,17 @@ test("the Skill prefers bundled MCP tools and retains a CLI fallback", () => {
   assert.match(skill, /fall back to the official `beatapi` CLI/);
   assert.match(commandMap, /beatapi_create_music_video/);
   assert.match(commandMap, /beatapi webhooks create/);
+  assert.match(commandMap, /beatapi_create_realtime_session/);
+  assert.match(commandMap, /beatapi realtime sessions create/);
+});
+
+test("realtime guidance protects the long-lived key and browser boundary", () => {
+  const realtime = readFileSync(
+    new URL("references/realtime-video.md", skillRoot),
+    "utf8",
+  );
+  assert.match(realtime, /never.*`sk_`.*browser/i);
+  assert.match(realtime, /client_secret/);
+  assert.match(realtime, /camera.*WebRTC/i);
+  assert.match(realtime, /Idempotency-Key/);
 });
