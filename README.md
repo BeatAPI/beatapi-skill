@@ -1,7 +1,7 @@
 # BeatAPI Video Agent Skill
 
 Official Agent Skill for creating, monitoring, and troubleshooting BeatAPI
-Music Video, Ecommerce Video, and Realtime Video sessions.
+image, video, Effect, Music Video, Ecommerce Video, and Realtime tasks.
 
 The installable Skill is self-contained at:
 
@@ -18,6 +18,9 @@ copy of the public BeatAPI OpenAPI contract.
 - “Make a music video from these images and this song.”
 - “Let me choose and edit storyboard shots before composition.”
 - “Create a vertical product ad from these photos.”
+- “Generate an image with Nano Banana Pro.”
+- “Use Seedance 2.5 to make a 10-second video.”
+- “List the current Effects and run one on this portrait.”
 - “Check why my BeatAPI task failed.”
 - “Upload these local inputs and wait for the hosted result.”
 - “Configure BeatAPI success and failure webhooks.”
@@ -92,6 +95,7 @@ skills/beatapi-video/
     ├── beatapi.openapi.yaml
     ├── credits-and-limits.md
     ├── errors-and-recovery.md
+    ├── generation-and-effects.md
     ├── manual-music-video.md
     └── realtime-video.md
 ```
