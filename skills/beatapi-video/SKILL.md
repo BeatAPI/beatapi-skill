@@ -45,7 +45,9 @@ server-side code. The Skills-only distribution requires Node.js 20.19+ or
    files. Keep the official `BEATAPI_BASE_URL`; an authorized custom HTTPS
    origin also requires the explicit `BEATAPI_TRUST_CUSTOM_BASE_URL=1` operator
    setting.
-3. Without MCP, check `beatapi --version`, then run `beatapi auth status`.
+3. For the MCP CLI bridge, set `BEATAPI_CLI_PATH` to the reviewed CLI's
+   absolute executable path. Without MCP, check `beatapi --version`, then run
+   `beatapi auth status`.
 4. If the CLI is missing, instruct the user to install it; install it only when
    the user has authorized environment changes.
 5. If authentication is absent, ask the user to run `beatapi auth login` in a
