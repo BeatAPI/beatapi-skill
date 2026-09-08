@@ -42,7 +42,9 @@ server-side code. The Skills-only distribution requires Node.js 20.19+ or
    otherwise follow its exact next step.
 2. If the host shows a plugin **Configure** action, store `BEATAPI_API_KEY`
    there. This keeps the secret outside chat and repository
-   files. Configure `BEATAPI_BASE_URL` only for an authorized custom endpoint.
+   files. Keep the official `BEATAPI_BASE_URL`; an authorized custom HTTPS
+   origin also requires the explicit `BEATAPI_TRUST_CUSTOM_BASE_URL=1` operator
+   setting.
 3. Without MCP, check `beatapi --version`, then run `beatapi auth status`.
 4. If the CLI is missing, instruct the user to install it; install it only when
    the user has authorized environment changes.
