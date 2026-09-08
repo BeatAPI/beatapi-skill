@@ -94,9 +94,10 @@ test("the Skill prefers bundled MCP tools and retains a CLI fallback", () => {
   assert.match(skill, /beatapi_check_setup/);
   assert.match(skill, /fall back to the official `beatapi` CLI/);
   assert.match(commandMap, /beatapi_create_music_video/);
-  assert.match(commandMap, /beatapi webhooks create/);
-  assert.match(commandMap, /beatapi_create_realtime_session/);
-  assert.match(commandMap, /beatapi realtime sessions create/);
+  assert.match(commandMap, /Create webhook.*Not agent-exposed/);
+  assert.match(commandMap, /Create Realtime session.*Not agent-exposed/);
+  assert.doesNotMatch(commandMap, /beatapi webhooks create/);
+  assert.doesNotMatch(commandMap, /beatapi realtime sessions create/);
   assert.match(commandMap, /beatapi_list_text_models/);
   assert.match(commandMap, /beatapi_create_text_response/);
   assert.match(commandMap, /beatapi_analyze_video/);
@@ -123,7 +124,7 @@ test("realtime guidance protects the long-lived key and browser boundary", () =>
     new URL("references/realtime-video.md", skillRoot),
     "utf8",
   );
-  assert.match(realtime, /never.*`sk_`.*browser/i);
+  assert.match(realtime, /Never put\s+.*`sk_`.*browser/is);
   assert.match(realtime, /client_secret/);
   assert.match(realtime, /camera.*WebRTC/i);
   assert.match(realtime, /Idempotency-Key/);
