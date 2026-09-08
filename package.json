@@ -2,7 +2,7 @@
   "name": "beatapi-skill",
   "version": "0.2.0",
   "private": true,
-  "description": "Agent Skill for managing BeatAPI async and realtime AI video APIs.",
+  "description": "Agent Skill for BeatAPI text, media, workflow, and realtime APIs.",
   "type": "module",
   "scripts": {
     "contract:sync": "node scripts/contract.mjs --write",

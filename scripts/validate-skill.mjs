@@ -89,6 +89,9 @@ for (const asset of [
   "music-video.auto.json",
   "music-video.manual.json",
   "ecommerce-video.json",
+  "image-generation.json",
+  "video-generation.json",
+  "effect-task.json",
   "webhook.json",
 ]) {
   JSON.parse(read(resolve(skill, "assets", asset)));

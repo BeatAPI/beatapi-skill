@@ -43,6 +43,8 @@ test("eval suite covers paid, read-only, manual, auth, and non-trigger cases", (
   assert.match(prompts, /Don't create anything new/);
   assert.match(prompts, /not authenticated/);
   assert.match(prompts, /Trim the first 10 seconds/);
+  assert.match(prompts, /explicitly asked for BeatAPI text/);
+  assert.match(prompts, /Analyze this product-demo video/);
 });
 
 test("the bundled contract contains every operation named by the Skill", () => {
@@ -68,6 +70,14 @@ test("the bundled contract contains every operation named by the Skill", () => {
     "createRealtimeSession",
     "getRealtimeSession",
     "closeRealtimeSession",
+    "listTextModels",
+    "createTextResponse",
+    "createImageGenerationTask",
+    "createVideoGenerationTask",
+    "listEffects",
+    "getEffect",
+    "createEffectTask",
+    "createVideoAnalysisTask",
   ]) {
     assert.match(contract, new RegExp(`operationId: ${operation}\\b`));
   }
@@ -87,6 +97,25 @@ test("the Skill prefers bundled MCP tools and retains a CLI fallback", () => {
   assert.match(commandMap, /beatapi webhooks create/);
   assert.match(commandMap, /beatapi_create_realtime_session/);
   assert.match(commandMap, /beatapi realtime sessions create/);
+  assert.match(commandMap, /beatapi_list_text_models/);
+  assert.match(commandMap, /beatapi_create_text_response/);
+  assert.match(commandMap, /beatapi_analyze_video/);
+});
+
+test("credential setup uses host configuration and never asks for a key in chat", () => {
+  const skill = readFileSync(new URL("SKILL.md", skillRoot), "utf8");
+
+  assert.match(skill, /Configure.*BEATAPI_API_KEY/i);
+  assert.match(skill, /Never request a key in chat/i);
+  assert.doesNotMatch(skill, /paste (?:the|your) (?:API )?key (?:here|into chat)/i);
+});
+
+test("text generation requires explicit BeatAPI intent", () => {
+  const skill = readFileSync(new URL("SKILL.md", skillRoot), "utf8");
+
+  assert.match(skill, /only when the user explicitly asks.*BeatAPI text/i);
+  assert.match(skill, /beatapi_create_text_response/);
+  assert.match(skill, /stream.*false/i);
 });
 
 test("realtime guidance protects the long-lived key and browser boundary", () => {
