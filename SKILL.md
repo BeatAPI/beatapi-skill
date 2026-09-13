@@ -27,10 +27,10 @@ Skill installation.
 
 Always use this order when the capability or its input is unfamiliar:
 
-1. **Search** (`capabilities_search`) — find a small set of candidates.
-2. **Inspect** (`capabilities_inspect`) — read the exact input schema, output schema, pagination,
+1. **Search** (`capabilities_search`) - find a small set of candidates.
+2. **Inspect** (`capabilities_inspect`) - read the exact input schema, output schema, pagination,
    limits, execution mode, and validation state.
-3. **Run** (`capabilities_run`) — start the capability with the inspected input. For an asynchronous
+3. **Run** (`capabilities_run`) - start the capability with the inspected input. For an asynchronous
    run, poll its task with `operation: "status"`.
 
 Capability references are provider-neutral:
@@ -49,18 +49,18 @@ Do not guess action IDs or parameters, and do not send supplier-native routes.
 curl https://api.beatapi.io/v1/capabilities/search \
   -H "Authorization: Bearer $BEATAPI_API_KEY" \
   -H "Content-Type: application/json" \
-  -d '{"query":"小红书 笔记搜索","kind":"data","limit":5}'
+  -d '{"query":"social video search","kind":"data","limit":5}'
 
 curl https://api.beatapi.io/v1/capabilities/inspect \
   -H "Authorization: Bearer $BEATAPI_API_KEY" \
   -H "Content-Type: application/json" \
-  -d '{"reference":"data:xiaohongshu.note.search"}'
+  -d '{"reference":"data:social.video.search"}'
 
 curl https://api.beatapi.io/v1/capabilities/run \
   -H "Authorization: Bearer $BEATAPI_API_KEY" \
   -H "Idempotency-Key: example-001" \
   -H "Content-Type: application/json" \
-  -d '{"reference":"data:xiaohongshu.note.search","operation":"start","input":{"keyword":"AI 视频"},"idempotency_key":"example-001"}'
+  -d '{"reference":"data:social.video.search","operation":"start","input":{"keyword":"AI video"},"idempotency_key":"example-001"}'
 ```
 
 For an asynchronous task, call
