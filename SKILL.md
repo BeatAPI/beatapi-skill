@@ -25,6 +25,9 @@ supported by their host. Explain only the steps requiring user input.
      `Authorization: Bearer <configured key>` header. Use the host's documented
      secret substitution. An environment variable alone does not add the header.
      Check the actual host configuration format; do not guess universal JSON.
+   - **CLI (terminal hosts):** use the official `beatapi` package when its
+     installed `--help` supports the required command. See the CLI section below.
+     Reuse it for secure login, uploads and supported workflow operations.
    - **REST:** use `https://api.beatapi.io` and the same Bearer header from an
      available trusted HTTP runtime. MCP installation is not required. Do not
      invent CLI commands or assume an installed CLI supports these operations.
@@ -58,6 +61,65 @@ For "Check my BeatAPI connection and show available capabilities":
   On failure, report the failing step and error/request ID without credentials.
   Distinguish "connected" from "completed a task".
 - Verification is read-only. Do not start a paid task unless requested.
+
+## Official CLI for terminal hosts
+
+The official repository is <https://github.com/BeatAPI/beatapi-cli>; the npm
+package is `beatapi`. Existing MCP connections remain preferred; do not install
+a second execution route unless needed (for example, local file upload).
+
+```sh
+npm install --global beatapi
+beatapi --version
+beatapi --help
+beatapi auth login
+beatapi auth status
+```
+
+Have the user run interactive login and privately enter their key in the hidden
+prompt. Login validates `/v1/usage` and uses the OS credential manager. In trusted
+automation use privately configured `BEATAPI_API_KEY`. Never read saved credentials
+back into the conversation. A CLI login does not configure a separate MCP host.
+
+Unified capability commands are implemented in the 0.3.0 source; do not assume
+they are published to npm yet. The 0.2.0 CLI supports auth, upload, workflow and
+task operations but not unified capability discovery. Check installed help. If
+the commands are unavailable, use configured MCP or REST; do not retry invented
+commands or force an unavailable package version.
+
+When installed help exposes these commands:
+
+```sh
+beatapi capabilities search --query image --kind model --limit 5
+beatapi capabilities search --query search --kind data --platform twitter --limit 5
+beatapi capabilities search --kind workflow --limit 5
+beatapi capabilities inspect <actual-reference-from-search>
+```
+
+These catalog calls are anonymous; run `beatapi auth status` separately to verify
+authentication. CLI Search emits `{data: [...], next_cursor}` without the outer
+REST envelope; CLI Inspect emits the contract directly. Warnings go to stderr.
+
+For an explicitly requested task, prepare a JSON file containing only the actual
+capability input, using Inspect and official docs for any missing fields:
+
+```sh
+beatapi capabilities run <inspected-reference> --file input.json --idempotency-key <unique-task-key>
+beatapi capabilities status <same-reference> <returned-task-id> --wait --attempts 60 --interval 5000
+```
+
+Placeholders must be replaced, not executed literally. Retain the idempotency key;
+the CLI also prints a generated key before a start if none was supplied. Starts
+are not automatically retried. Poll only async results; sync Data results return
+directly. Waiting is bounded and stops for manual-action or unknown states. Resume
+the same task after timeout. Commands emit JSON to stdout and can save it using
+`--output <new-file.json>` without overwriting existing files. If file saving
+fails after execution, keep stdout and do not restart the task.
+
+Use existing `beatapi files upload <local-path>` for local media; pass the actual
+returned file identifier or URL only as supported by the selected API contract.
+Existing `tasks`, `music-video` and `ecommerce-video` commands remain supported.
+CLI convenience does not make a partial Inspect schema complete.
 
 ## When to use BeatAPI
 
