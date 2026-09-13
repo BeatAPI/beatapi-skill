@@ -18,7 +18,10 @@ Capability references use `model:<id>`, `data:<id>`, and `workflow:<id>`. Do not
 Read [capabilities.md](references/capabilities.md) for the REST, MCP, CLI, and idempotency examples.
 Read [social-data.md](references/social-data.md) before selecting or running a Social Data action.
 
-Treat the bundled OpenAPI snapshot as the exact API contract.
+Use the bundled OpenAPI as a versioned reference. Current official API contracts
+take precedence if the deployed capability differs. If Inspect returns only
+`input_modes` or an incomplete schema, read the selected capability's documentation
+before constructing input. Never guess missing fields.
 
 ## Choose the execution adapter
 
@@ -51,7 +54,11 @@ server-side code. The Skills-only distribution requires Node.js 20.19+ or
 
 ## Establish readiness
 
-1. With MCP, call `beatapi_check_setup`. If configured, use its usage result;
+1. With the remote three-tool MCP, initialize and list tools, then Search and
+   Inspect a real returned reference. The MCP endpoint requires authentication.
+   For REST, validate the key with `GET /v1/usage`; anonymous Search does not
+   prove authentication. Follow <https://beatapi.io/SKILL.md> for setup.
+   With the legacy plugin, call `beatapi_check_setup`. If configured, use its usage result;
    otherwise follow its exact next step.
 2. If the host shows a plugin **Configure** action, store `BEATAPI_API_KEY`
    there. This keeps the secret outside chat and repository

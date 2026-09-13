@@ -6,7 +6,6 @@ The public HTTP surface is:
 POST /v1/capabilities/search
 POST /v1/capabilities/inspect
 POST /v1/capabilities/run
-POST /v1/capabilities/run/status
 ```
 
 Use the caller's configured API key. Search, Inspect, and status are read-only. Run start uses the existing account balance, task, and idempotency rules.
@@ -36,16 +35,21 @@ errors, and credit behavior.
 curl https://api.beatapi.io/v1/capabilities/search \
   -H "Authorization: Bearer $BEATAPI_API_KEY" \
   -H 'Content-Type: application/json' \
-  -d '{"query":"小红书 笔记搜索","kind":"data","limit":5}'
+  -d '{"query":"search","kind":"data","platform":"xiaohongshu","limit":5}'
 ```
 
-```bash
-curl https://api.beatapi.io/v1/capabilities/run \
-  -H "Authorization: Bearer $BEATAPI_API_KEY" \
-  -H 'Idempotency-Key: capability-run-001' \
-  -H 'Content-Type: application/json' \
-  -d '{"reference":"data:xiaohongshu.note.search","operation":"start","input":{"keyword":"AI 视频"},"idempotency_key":"capability-run-001"}'
-```
+Select an actual reference from `data.data`, then inspect it. Construct the Run
+input only from that action's schema. Do not copy an invented action ID or assume
+all search actions accept the same parameters. Status uses the same
+`POST /v1/capabilities/run` endpoint with `operation: "status"`, `reference`,
+and the returned `task_id`; the API origin has no separate `/run/status` route.
+
+Some Inspect responses contain only `input_modes` or omit the full input schema.
+Read the selected capability's current official API documentation before running;
+if its execution mapping remains unclear, report the gap instead of guessing.
+See <https://beatapi.io/SKILL.md> for setup, a runnable read-only discovery example,
+and error recovery. Anonymous discovery does not validate an API key; use
+authenticated `/v1/usage` or the authenticated MCP connection.
 
 Use the same idempotency key only for the same request. Never put an API key in a prompt, URL, source file, or tool argument.
 
