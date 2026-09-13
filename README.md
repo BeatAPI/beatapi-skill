@@ -1,7 +1,11 @@
 # BeatAPI Video Agent Skill
 
-Official Agent Skill for creating, monitoring, and troubleshooting BeatAPI
-Music Video, Ecommerce Video, and Realtime Video sessions.
+The public, agent-readable setup entrypoint is [`SKILL.md`](SKILL.md). It is
+also published at <https://beatapi.io/SKILL.md> and gives the shortest path
+from a BeatAPI key to the unified Search → Inspect → Run capability loop.
+
+Official Agent Skill for BeatAPI Model, Social Data, and Workflow capabilities,
+including media generation, social-data actions, tasks, and Realtime sessions.
 
 The installable Skill is self-contained at:
 
@@ -21,6 +25,7 @@ copy of the public BeatAPI OpenAPI contract.
 - “Check why my BeatAPI task failed.”
 - “Upload these local inputs and wait for the hosted result.”
 - “Configure BeatAPI success and failure webhooks.”
+- “Search and run a Social Data action through BeatAPI.”
 - “Create a 60-second Realtime Video session for my web app.”
 
 The Skill prefers BeatAPI MCP tools when the host provides them. The complete
