@@ -32,7 +32,10 @@ for the same operation.
 When BeatAPI MCP tools are unavailable, fall back to the official `beatapi` CLI
 for commands it supports, or use the bundled OpenAPI contract from trusted
 server-side code. The Skills-only distribution requires Node.js 20.19+ or
-22.12+ and the reviewed `npm install --global beatapi@0.2.0` release.
+22.12+. Check `beatapi --version` and `beatapi --help` before selecting commands.
+The 0.2.0 release lacks unified capability commands. The 0.3.0 source adds
+`capabilities search`, `inspect`, `run` and `status`; do not assume it is on npm
+until published. If absent, use MCP or REST rather than inventing CLI flags.
 
 ## Protect the account
 
