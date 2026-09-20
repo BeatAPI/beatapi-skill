@@ -12,9 +12,14 @@ test('the public setup entrypoint dynamically discovers and calls text models', 
   assert.match(skill, /GET https:\/\/api\.beatapi\.io\/v1\/media\/models/);
   assert.match(skill, /complete model inventory is the\s+union/i);
   assert.match(skill, /POST https:\/\/api\.beatapi\.io\/v1\/responses/);
-  assert.match(skill, /Choose only an ID returned in `data`/);
+  assert.match(skill, /Choose only an ID returned by live discovery/);
   assert.match(skill, /Do not hard-code a model catalog/);
-  assert.match(skill, /image and video generation capabilities/);
+  assert.match(skill, /Search.*text, image and video models/i);
+  assert.match(skill, /Inspect the selected/);
+  assert.match(skill, /execution strategy: `direct_api`/);
+  assert.match(skill, /`capabilities_run` is optional/i);
+  assert.match(skill, /strategy: `direct_api`/i);
+  assert.match(skill, /run_supported: `false`/i);
 });
 
 test('setup verifies authentication, lists key-scoped text models, and inspects a generation model without running a task', async () => {
