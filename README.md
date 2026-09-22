@@ -1,11 +1,12 @@
-# BeatAPI Video Agent Skill
+# BeatAPI Agent Skill
 
 The public, agent-readable setup entrypoint is [`SKILL.md`](SKILL.md). It is
 also published at <https://beatapi.io/SKILL.md> and gives the shortest path
 from a BeatAPI key to the unified Search → Inspect → Run capability loop.
 
 Official Agent Skill for BeatAPI Model, Social Data, and Workflow capabilities,
-including media generation, social-data actions, tasks, and Realtime sessions.
+including text, image, video, 1,000+ discoverable Data actions, production
+workflows, tasks, Effects, and Realtime sessions.
 
 The installable Skill is self-contained at:
 
@@ -28,17 +29,17 @@ copy of the public BeatAPI OpenAPI contract.
 - “Search and run a Social Data action through BeatAPI.”
 - “Create a 60-second Realtime Video session for my web app.”
 
-The Skill prefers BeatAPI MCP tools when the host provides them. The complete
-Codex plugin bundles those tools. A standalone Skill installation falls back
-to the official `beatapi` CLI. Neither adapter asks the user to paste an API
-key into a conversation.
+The Skill prefers the Hosted MCP Search → Inspect → Run loop when the host
+provides it. The complete Agent Plugin also bundles focused local MCP tools. A
+standalone Skill installation falls back to the official `beatapi` CLI. None
+of these adapters asks the user to paste an API key into a conversation.
 
 ## Requirements
 
 - A BeatAPI customer account and API key
 - An Agent Skills-compatible host
 - One execution adapter:
-  - BeatAPI MCP tools supplied by the host or the complete Codex plugin; or
+  - BeatAPI Hosted MCP or local tools supplied by the complete Agent Plugin; or
   - Node.js 20.19+ / 22.12+ and `npm install --global beatapi`
 
 Create a key at <https://beatapi.io/dashboard/apikeys>. For a standalone Skill
@@ -66,8 +67,8 @@ Repository-scoped hosts can place the same folder under their documented local
 Skills directory. Invoke it explicitly as `$beatapi-video` or let compatible
 hosts trigger it from the description.
 
-Codex desktop marketplace distribution is provided by the separate
-`beatapi-codex-plugin` repository, which embeds this same Skill.
+Cross-host plugin distribution is provided by the separate
+`beatapi-agent-plugin` repository, which embeds this same Skill.
 
 ## Contract integrity
 

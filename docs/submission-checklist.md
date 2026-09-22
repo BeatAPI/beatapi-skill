@@ -20,7 +20,7 @@
 4. Confirm the repository is public and the default branch is `main`.
 5. Confirm the Skill folder has no symlinks, generated caches, private media,
    credentials, or repository-only relative references.
-6. Test a fresh clone with the eight prompts in `evals/evals.json`.
+6. Test a fresh clone with every prompt in `evals/evals.json`.
 7. Confirm the listing distinguishes the two adapters: bundled BeatAPI MCP in
    the complete Codex plugin, or the globally installed `beatapi` CLI for a
    standalone Skill submission.
@@ -29,22 +29,22 @@
 
 ## Suggested listing copy
 
-**Name:** BeatAPI Video
+**Name:** BeatAPI Agent Toolkit
 
-**Short description:** Create and manage BeatAPI AI video workflows.
+**Short description:** Use BeatAPI models, Social Data, and workflows.
 
-**Long description:** Create AI music videos and ecommerce product ads through
-BeatAPI. The Skill safely uploads local media, checks credits and concurrency,
-supports automatic or manual storyboard composition, waits for asynchronous
-tasks, retrieves hosted output, manages webhooks, and preserves structured
-errors without exposing API keys. It prefers BeatAPI MCP tools supplied by the
-host and otherwise uses the official `beatapi` CLI.
+**Long description:** Discover current text, image, and video models, inspect
+Social Data actions, and run production workflows through BeatAPI. The Skill
+uses the provider-neutral Search → Inspect → Run loop, preserves direct API and
+asynchronous task semantics, and keeps API keys outside prompts. It prefers
+BeatAPI MCP tools supplied by the host and otherwise uses the official
+`beatapi` CLI.
 
 **Standalone prerequisite:** A Skills-only submission does not include an MCP
 server. Users therefore need Node.js and the globally installed `beatapi` CLI
 unless their host already supplies compatible BeatAPI MCP tools.
 
-**Categories:** Video, Developer Tools, Automation, AI Media
+**Categories:** Developer Tools, Data, Automation, AI Media
 
 ## Release evidence
 

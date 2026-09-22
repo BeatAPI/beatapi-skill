@@ -2,7 +2,7 @@
   "name": "beatapi-skill",
   "version": "0.2.0",
   "private": true,
-  "description": "Agent Skill for BeatAPI text, media, workflow, and realtime APIs.",
+  "description": "Agent Skill for BeatAPI models, Social Data, and workflows.",
   "type": "module",
   "scripts": {
     "contract:sync": "node scripts/contract.mjs --write",
@@ -27,6 +27,8 @@
     "agent-skill",
     "codex",
     "beatapi",
+    "agent-toolkit",
+    "social-data",
     "ai-video",
     "music-video",
     "ecommerce-video",

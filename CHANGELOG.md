@@ -2,6 +2,15 @@
 
 ## [Unreleased]
 
+### Changed
+
+- Synchronize the bundled OpenAPI contract with current capability, Social
+  Data, onboarding, text, image, video, Effect, Workflow, and Realtime routes.
+- Position the Skill around BeatAPI's Model/Data/Workflow capability layer and
+  the Hosted MCP Search → Inspect → Run interface while retaining focused local
+  plugin and CLI fallbacks.
+- Update setup guidance for the published 0.3.0 CLI and current dynamic catalog.
+
 ## [0.2.0] - 2026-07-31
 
 ### Added

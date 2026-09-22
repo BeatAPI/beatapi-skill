@@ -97,9 +97,9 @@ prompt. Login validates `/v1/usage` and uses the OS credential manager. In trust
 automation use privately configured `BEATAPI_API_KEY`. Never read saved credentials
 back into the conversation. A CLI login does not configure a separate MCP host.
 
-Unified capability commands are implemented in the 0.3.0 source; do not assume
-they are published to npm yet. The 0.2.0 CLI supports auth, upload, workflow and
-task operations but not unified capability discovery. Check installed help. If
+Unified capability commands are published in the 0.3.0 CLI. The 0.2.0 CLI
+supports auth, upload, workflow and task operations but not unified capability
+discovery. Check the installed version and help. If
 the commands are unavailable, use configured MCP or REST; do not retry invented
 commands or force an unavailable package version.
 
