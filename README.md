@@ -1,12 +1,29 @@
+<p align="center">
+  <img src="assets/readme/cover.svg" alt="BeatAPI Agent Skill — teach compatible Agents to discover, inspect, and run capabilities" width="100%" />
+</p>
+
+<p align="center">
+  <a href="https://beatapi.io/"><strong>Explore BeatAPI</strong></a> ·
+  <a href="https://beatapi.io/dashboard/apikeys">Create an API key</a> ·
+  <a href="https://beatapi.io/SKILL.md">Agent setup</a> ·
+  <a href="#install">Install</a>
+</p>
+
 # BeatAPI Agent Skill
 
-The public, agent-readable setup entrypoint is [`SKILL.md`](SKILL.md). It is
-also published at <https://beatapi.io/SKILL.md> and gives the shortest path
-from a BeatAPI key to the unified Search → Inspect → Run capability loop.
+BeatAPI is the **Agent Router for Everything**: one route to Model, Data, Tool,
+and Workspace capabilities. This repository teaches Agent Skills-compatible
+hosts when and how to discover, inspect, and run the capabilities currently
+available through BeatAPI.
 
-Official Agent Skill for BeatAPI Model, Social Data, and Workflow capabilities,
-including text, image, video, 1,000+ discoverable Data actions, production
-workflows, tasks, Effects, and Realtime sessions.
+Give a compatible Agent this one-line setup instruction:
+
+```text
+set up https://beatapi.io/SKILL.md
+```
+
+The public, agent-readable setup entrypoint is [`SKILL.md`](SKILL.md). It gives
+the shortest path from a BeatAPI key to the unified Search → Inspect → Run loop.
 
 The installable Skill is self-contained at:
 
@@ -17,6 +34,16 @@ skills/beatapi-video/
 It contains concise orchestration instructions, exact workflow references,
 safe JSON templates, realistic evaluation prompts, UI metadata, and a reviewed
 copy of the public BeatAPI OpenAPI contract.
+
+## Where this repository fits
+
+```text
+Agent host -> BeatAPI Skill -> CLI or MCP -> BeatAPI -> Model · Data · Tool · Workspace
+```
+
+The Skill reflects the current public catalog and contract. Model and Social
+Data capabilities are discoverable today; Tool and Workspace routes depend on
+the interfaces and integrations available to the connected host.
 
 ## What users can ask
 
@@ -121,3 +148,7 @@ prompts, fixtures, screenshots, or public issues. See [SECURITY.md](SECURITY.md)
 ## License
 
 MIT
+
+<p align="center">
+  Built by <a href="https://beatapi.io/"><strong>BeatAPI</strong></a> — Agent Router for Everything.
+</p>

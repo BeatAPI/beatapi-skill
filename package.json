@@ -2,7 +2,7 @@
   "name": "beatapi-skill",
   "version": "0.2.0",
   "private": true,
-  "description": "Agent Skill for BeatAPI models, Social Data, and workflows.",
+  "description": "Official Agent Skill for BeatAPI, the Agent Router for Everything.",
   "type": "module",
   "scripts": {
     "contract:sync": "node scripts/contract.mjs --write",
