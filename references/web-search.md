@@ -22,10 +22,10 @@ Search, Inspect and Run handle like any other. Fields:
 - `web_research` is slower and dearer: 30 seconds to 3 minutes. Use it when an
   answer needs several sources weighed, and `web_search` when a list is enough.
   It runs as a task: through Run the start returns a task id and a `next`
-  status call to repeat every 10-15 s; the MCP tool waits up to 40 s and returns
-  either the result or the task. A failed run is not charged. (`POST
-  /v1/web/research` answers synchronously and can time out on long questions;
-  prefer Run.)
+  status call to repeat every 10-15 s; the MCP tool waits up to 50 s and returns
+  either the result or the task. `POST /v1/web/research` holds the request up to
+  85 s, then answers `202` with the task and its `next` poll. A failed run is not
+  charged.
 - Cite only research sources whose `read_status` is `read`; a `read` source may
   lack `content`, so read its URL for full text. A `partial` result names what
   is missing in `partial_reasons`.
