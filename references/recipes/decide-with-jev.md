@@ -38,7 +38,11 @@ Inspect either for the full schema.
 - `state`: text or a JSON object describing the situation. Put everything the
   decision depends on here.
 - `questions`: one or more named questions, answered independently. Several
-  questions in one request cost one input — cheaper than separate calls.
+  questions in one request cost one input — cheaper than separate calls, and on
+  the free model, one call instead of a minute's wait for each.
+- Ranking many candidates (20 titles): put them all in **one** `choice`
+  question; its `probabilities` rank every option. For an absolute rating of
+  each, add one `score` question per candidate in the same call.
 - Types (`noul` is not a typo for bool):
   - `choice`: `criteria` is an object, option key → meaning. Returns `choice`
     (the chosen key), `probabilities` and `confidence`.
@@ -62,6 +66,7 @@ four-step scale sits between `criteria[1]` and `criteria[2]`, closer to the latt
 
 - `score` with 11+ criteria is rejected (400) before it costs anything.
 - The free model allows about one request a minute before the first top-up;
-  on 429 wait for `Retry-After`.
+  on 429 wait for `Retry-After`. Batch candidates into one call rather than
+  looping over them.
 - Developers can call `POST https://api.beatapi.io/v1/systemone` directly with
   `{"model":"jev-1.13", "state", "questions"}`; the request and answer are the same.

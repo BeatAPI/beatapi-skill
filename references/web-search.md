@@ -16,8 +16,16 @@ Search, Inspect and Run handle like any other. Fields:
 - Keep `max_results` small (default 5); refine the query or change `type`
   instead of pulling everything. On Read, pass `query` and a lower `max_chars`.
 - To find pages inside one site, `web_map` it (narrow with `select_paths` such
-  as `/docs/.*`), then read the URLs you need. Do not guess URLs.
-- `web_research` is slower and dearer (typically 10-50 seconds). Use it when an
-  answer needs several sources weighed. Cite only sources whose `read_status`
-  is `read`; a `read` source may lack `content`, so read its URL for full text.
-  A `partial` result names what is missing in `partial_reasons`.
+  as `/docs/.*`), then read the URLs you need. Do not guess URLs. An empty map
+  is free and carries a `note` on what to try (a page that links only to other
+  sites, or builds its links with JavaScript).
+- `web_research` is slower and dearer: 30 seconds to 3 minutes. Use it when an
+  answer needs several sources weighed, and `web_search` when a list is enough.
+  It runs as a task: through Run the start returns a task id and a `next`
+  status call to repeat every 10-15 s; the MCP tool waits up to 40 s and returns
+  either the result or the task. A failed run is not charged. (`POST
+  /v1/web/research` answers synchronously and can time out on long questions;
+  prefer Run.)
+- Cite only research sources whose `read_status` is `read`; a `read` source may
+  lack `content`, so read its URL for full text. A `partial` result names what
+  is missing in `partial_reasons`.

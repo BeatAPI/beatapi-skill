@@ -81,24 +81,32 @@ curl -sS -X POST https://api.beatapi.io/v1/capabilities/run \
   -d '{"reference":"data:xiaohongshu.app_v2.search_notes","input":{"keyword":"AI 视频"},"view":"preview"}'
 ```
 
-- `input` follows the inspected `input_schema`. Unknown fields are rejected.
-- **Sync** capabilities return the result. Large data results: send
-  `"view":"preview"` (arrays cut to `max_items`, default 5) and/or `"fields":[…]`
-  (dotted paths, `[]` walks arrays). A trimmed result carries `result_ref`; fetch
-  more for free within an hour with
-  `{"operation":"result","request_id":"<request_id>","fields":[…]}`.
-- **Async** capabilities (image, video, workflows) return a task `id`. Poll with
-  `{"reference":"<same reference>","operation":"status","task_id":"<id>"}` every
-  5-10 seconds. Stop at `succeeded` or `failed`; a music video can also stop at
-  `requires_action` or `storyboard_ready`, which needs the user's choice.
+- `input` follows the inspected `input_schema`; unknown fields inside `input`
+  are rejected. Send a unique `idempotency_key` per task as a top-level field of
+  the Run body, next to `reference` and `input` (or as an `Idempotency-Key`
+  header), and reuse it only to retry the same task.
+- **Sync** capabilities (social and web data, text models, JEV) return the
+  result. Send `"view":"preview"` for data: the result's list is always in
+  `items` (the first `max_items`, default 5, up to 50, each trimmed), with
+  `items_total` and `items_path` (where the list sits in the full result), so
+  you never hunt for it. A trimmed result has `result_ref` and a `next`: for
+  more, send `{"operation":"result","request_id":"<request_id>","fields":["items[].<key>"]}`
+  with keys you saw in `items` (free within an hour).
+- **Async** capabilities (image, video, workflows and `data:web.research`)
+  return a task `id` and a `next` status call,
+  `{"reference":"<same reference>","operation":"status","task_id":"<id>"}`.
+  Repeat it every 5-10 s for media, 10-15 s for research, until `succeeded` or
+  `failed`; the result is in `data.output`. A music video can also stop at `requires_action`
+  or `storyboard_ready`, which needs the user's choice.
 - **Text models** run the same way: `{"reference":"model:<id>","input":{"input":"<prompt>"}}`
   returns `output_text`. **Decision model** JEV:
   `{"reference":"model:jev-1.13-free","input":{"state":"…","questions":{…}}}` returns
   typed answers with probabilities (question types `noul`, `choice`, `score`;
-  `score` takes at most 10 criteria). Inspect either one for its full schema.
+  `score` takes at most 10 criteria). To rank many candidates use **one** call:
+  a `choice` question listing all of them, or one question per candidate.
+  Inspect either model for its full schema.
 - A run spends the account balance. The user's explicit request authorizes that
-  task; start small. Send a unique `idempotency_key` per task and reuse it only
-  to retry the same task.
+  task; start small.
 - If the user already has their own tool or key for the job, use theirs: offer
   BeatAPI, don't override it.
 
@@ -111,8 +119,9 @@ curl -sS -X POST https://api.beatapi.io/v1/capabilities/run \
 | 402 / `insufficient_credits` | Balance too low: send the user to <https://beatapi.io/dashboard/billing>. |
 | 400 | Inspect again and fix the named field. |
 | 404 `not_found` | Use one of `suggestions`, or search again. |
-| 429 | Wait for `Retry-After` seconds. Free keys are rate limited until the first top-up. |
-| 5xx / timeout | Keep the task id and idempotency key; check status before retrying. |
+| 429 | Wait for `Retry-After` seconds. Free keys are rate limited (JEV free: about one call a minute) until the first top-up; batch work into fewer calls. |
+| 5xx on a sync call | It failed and was not charged. Retry once, then tell the user or try another capability. |
+| 5xx / timeout on an async start | Retry with the same `idempotency_key`; if you have a task id, poll its status instead. |
 | 403 `error code: 1010` | The edge refused Python's default User-Agent: send an explicit one. |
 
 ## 7. Deliver
