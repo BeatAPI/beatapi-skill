@@ -4,6 +4,15 @@
 
 ### Changed
 
+- Rewrite the core `SKILL.md` for weak agents (about 7 KB, was 21 KB): one
+  Search → Inspect → Run loop for every capability, a transport table, key
+  format, copy-the-`next`-field guidance, text and JEV models through Run, and
+  an error table. Setup, web search and recipes move to `references/`, which
+  BeatAPI publishes under `https://beatapi.io/skill-refs/`.
+- Add recipes: 小红书 topic research, competitor accounts, JEV decisions.
+- Fix the Social Data example that searched for a phrase with no match and
+  inspected a reference that does not exist.
+
 - Synchronize the bundled OpenAPI contract with current capability, Social
   Data, onboarding, text, image, video, Effect, Workflow, and Realtime routes.
 - Position the Skill around BeatAPI's Model/Data/Workflow capability layer and
