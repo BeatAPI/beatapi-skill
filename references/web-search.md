@@ -18,9 +18,12 @@ Search, Inspect and Run handle like any other. Fields:
 - A query written in Chinese, Japanese or Korean searches in that language and
   region by itself; pass `language` / `country` only to override.
 - To find pages inside one site, `web_map` it (narrow with `select_paths` such
-  as `/docs/.*`), then read the URLs you need. Do not guess URLs. An empty map
+  as `/docs/.*`), then read the URLs you need. Do not guess URLs. A URL ending
+  in `sitemap.xml` is read as its list of URLs. An empty map
   is free and carries a `note` on what to try (a page that links only to other
   sites, or builds its links with JavaScript).
+- Every search, read and map reply carries `usage` (`billing_unit`, `quantity`,
+  `price_usd`): the charge for that call, in US dollars.
 - `web_research` is slower and dearer: 30 seconds to 3 minutes. Use it when an
   answer needs several sources weighed, and `web_search` when a list is enough.
   It runs as a task: through Run the start returns a task id and a `next`
@@ -29,8 +32,12 @@ Search, Inspect and Run handle like any other. Fields:
   85 s, then answers `202` with the task id (`request_id`) and its `next` poll. A failed run is not
   charged.
 - For what people or a public figure are saying, pass `"include_x": true`: the
-  research then also searches posts on X.
-- Research sources come best first (pages read, then snippets), at most 20. Cite
-  only sources whose `read_status` is `read`; a `read` source may lack
-  `content`, so read its URL for full text. A `partial` result names what is
-  missing in `partial_reasons`.
+  research then also searches posts on X, and the posts it relied on appear in
+  `sources` with their x.com URLs.
+- `[[n]]` in `research_notes` is `sources[n-1]` (ids `source_1…` in order); every
+  source the notes cite is kept. Sources come best first (pages read, then
+  snippets), at most 20. For claims, prefer sources whose `read_status` is
+  `read`; an X post is `snippet` or `cited` (the reader cannot open X) and may
+  be cited as a post the research read through X search. A `read` source may
+  lack `content`, so read its URL for full text. A `partial` result names what
+  is missing in `partial_reasons`.
