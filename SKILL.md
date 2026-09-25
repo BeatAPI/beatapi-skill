@@ -25,6 +25,8 @@ exactly as returned; never invent one.
 | Neither | Tell the user to connect BeatAPI (<https://beatapi.io/skill>), then stop. |
 
 MCP also has `web_search`, `web_read`, `web_map` and `web_research` for the web.
+A Chinese, Japanese or Korean query searches in that language and region by
+itself; pass `language` / `country` (two-letter codes) only to override.
 
 ## 2. The API key
 
