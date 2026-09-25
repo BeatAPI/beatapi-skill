@@ -49,8 +49,9 @@ Inspect either for the full schema.
   - `score`: `criteria` is an array, low → high, **at most 10 items**. Returns
     `score` (a continuous index into the array, 0-based), `legend`,
     `probabilities`, `confidence`.
-  - `noul`: yes/no; `criteria` optional (`{"true": "...", "false": "..."}`).
-    Returns `noul`, the likelihood of yes (0-1).
+  - `noul`: yes/no; **`instructions` required** (the yes/no question — a noul
+    without one is refused with 400); `criteria` optional
+    (`{"true": "...", "false": "..."}`). Returns `noul`, the likelihood of yes (0-1).
 
 ## Read the answer
 

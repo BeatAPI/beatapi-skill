@@ -34,6 +34,8 @@ MCP also has `web_search`, `web_read`, `web_map` and `web_research` for the web.
 - Send it as `Authorization: Bearer <key>`. Keys look like `sk-…`; the key works
   with or without the `sk-` prefix. Do not add a second prefix.
 - Get a key: <https://beatapi.io/dashboard/apikeys>. Search and Inspect need no key.
+- Balance and usage: `GET https://api.beatapi.io/v1/usage` with the key returns
+  `credit_balance` (USD); check it before a large batch.
 
 ## 3. Search
 
@@ -92,18 +94,24 @@ curl -sS -X POST https://api.beatapi.io/v1/capabilities/run \
   full result), so you never hunt for it. A trimmed result has `result_ref` and
   a `next`: for more, send
   `{"reference":"<same reference>","operation":"result","request_id":"<request_id>","fields":["items[].<key>"]}`
-  with keys you saw in `items` (free within an hour).
+  with keys you saw in `items` (free within an hour). `items` comes with
+  `"view":"preview"` or `items[]` fields; without a view the result is the
+  platform's own shape. Array indexes such as `[0]` are refused: use `[]` and
+  `max_items`.
 - **Async** capabilities (image, video, workflows and `data:web.research`)
   return a task `id` and a `next` status call,
   `{"reference":"<same reference>","operation":"status","task_id":"<id>"}`.
   Repeat it every 5-10 s for media, 10-15 s for research, until `succeeded` or
-  `failed`; the result is in `data.output`. A music video can also stop at `requires_action`
+  `failed`; the result is in `data.output`. Over MCP only research waits (up to
+  45 s) before answering; an image or video task comes back at once and often
+  takes over a minute, so keep polling its `task_id`. A music video can also stop at `requires_action`
   or `storyboard_ready`, which needs the user's choice.
 - **Text models** run the same way: `{"reference":"model:<id>","input":{"input":"<prompt>"}}`
   returns `output_text`. **Decision model** JEV:
   `{"reference":"model:jev-1.13-free","input":{"state":"…","questions":{…}}}` returns
   typed answers with probabilities (question types `noul`, `choice`, `score`;
-  `score` takes at most 10 criteria). To rank many candidates use **one** call:
+  a `noul` needs `instructions`, the yes/no question; `score` takes
+  at most 10 criteria). To rank many candidates use **one** call:
   a `choice` question listing all of them, or one question per candidate.
   Inspect either model for its full schema.
 - A run spends the account balance. The user's explicit request authorizes that
