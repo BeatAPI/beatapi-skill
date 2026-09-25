@@ -56,7 +56,10 @@ curl -sS -X POST https://api.beatapi.io/v1/capabilities/search \
   An empty query returns the whole catalogue map.
 - Each result card has `reference`, `summary`, `price`, `readiness` and a one-line
   input `signature`. `understood` shows which of your words counted; `hints`
-  explain how to rephrase when nothing matched.
+  explain how to rephrase when nothing matched. A specific query also names its
+  pick in `recommended`: the top `reference`, `why_match` (the platform and
+  terms that counted) and `missing_inputs`, the fields a Run must carry. When
+  `readiness` is `ready` and the inputs are obvious, you can go straight to Run.
 - Optional fields: `platform` (slug or name, e.g. `xiaohongshu` or `小红书`),
   `kind` (`model` | `data` | `workflow`), `limit` (1-50, default 5), `cursor`.
 
@@ -81,7 +84,9 @@ Read `input_schema` (required fields, types, limits), `pricing`, `execution.mode
 $0.15, Quality $1.85 for the same 8 s). Pick the tier before a paid run; the
 task's `credits_reserved` is that tier's price.
 
-A guessed or misspelled reference returns 404 with `suggestions`.
+A guessed or misspelled reference returns 404 with `suggestions`. `schema_hash`
+fingerprints `input_schema` and `output_schema` together: cache a contract by it,
+and re-inspect only when a later reply shows a different hash.
 
 ## 5. Run
 
@@ -114,13 +119,17 @@ curl -sS -X POST https://api.beatapi.io/v1/capabilities/run \
 - **Async** capabilities (image, video, workflows and `data:web.research`)
   return a task `id` and a `next` status call,
   `{"reference":"<same reference>","operation":"status","task_id":"<id>"}`.
-  Repeat it every 5-10 s for media, 10-15 s for research, until `succeeded` or
-  `failed`; the result is in `data.output` (`media[]`; read `media[0].url` —
-  `r2_url` is the same value, now deprecated). Over MCP only research waits (up to
-  45 s) before answering; an image or video task comes back at once, and
-  `queued` can last several minutes on some models (14 minutes seen) with no
-  estimate, so keep polling its `task_id` with a growing interval. A music video can also stop at `requires_action`
-  or `storyboard_ready`, which needs the user's choice.
+  Repeat it until `succeeded` or `failed`, waiting the task's
+  `poll_after_seconds` between calls (5 s for images, 8 s for video, 10 s for
+  workflows and research); the result is in `data.output` (`media[]`; read
+  `media[0].url` — `r2_url` is the same value, now deprecated). A running task
+  may also carry `typical_seconds` (`p50`, `p90`, `samples`, `window`): how long
+  that model recently took from accepted to done. Past `p90` with no change,
+  tell the user it is running long; there is no ETA beyond that, and `queued`
+  can last several minutes on some models. Over MCP only research waits (up to
+  45 s) before answering; an image or video task comes back at once. A music
+  video can also stop at `requires_action` or `storyboard_ready`, which needs
+  the user's choice.
 - **Text models** run the same way: `{"reference":"model:<id>","input":{"input":"<prompt>"}}`
   returns `output_text`; its `usage` token counts are what the upstream counts
   for that model (some include their own system prompt), so they are not

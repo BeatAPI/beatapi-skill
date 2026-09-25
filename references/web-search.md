@@ -37,7 +37,9 @@ Search, Inspect and Run handle like any other. Fields:
   research then also searches posts on X, and the posts it relied on appear in
   `sources` with their x.com URLs. This is best effort, not a guarantee: a run
   cites X posts only when they informed the answer, so the same question can
-  return three one time and none the next.
+  return three one time and none the next. `x_search` (`searches`,
+  `posts_fetched`), present when the run searched X, says whether X was read at
+  all when no X source came back.
 - `[[n]]` in `research_notes` is `sources[n-1]` (ids `source_1…` in order); every
   source the notes cite is kept. Sources come best first (pages read, then
   snippets), at most 20. For claims, prefer sources whose `read_status` is
