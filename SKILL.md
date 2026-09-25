@@ -93,7 +93,9 @@ curl -sS -X POST https://api.beatapi.io/v1/capabilities/run \
 
 - `input` follows the inspected `input_schema`; unknown fields inside `input`
   are rejected, and a missing required field is refused with 400 naming it
-  (`Missing required input: keyword`). Send a unique `idempotency_key` per task as a top-level field of
+  (`Missing required input: keyword`). The direct `/v1/chat/completions`,
+  `/v1/responses` and `/v1/messages` endpoints ignore unknown fields instead, as
+  OpenAI's API does. Send a unique `idempotency_key` per task as a top-level field of
   the Run body, next to `reference` and `input` (or as an `Idempotency-Key`
   header), and reuse it only to retry the same task.
 - **Sync** capabilities (social data, web search/read/map, text models, JEV)
