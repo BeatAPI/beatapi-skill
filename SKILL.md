@@ -37,8 +37,11 @@ itself; pass `language` / `country` (two-letter codes) only to override.
   with or without the `sk-` prefix. Do not add a second prefix.
 - Get a key: <https://beatapi.io/dashboard/apikeys>. Search and Inspect need no key.
 - Balance and usage: `GET https://api.beatapi.io/v1/usage` with the key returns
-  `credit_balance`; check it before a large batch. Credits are US dollars
-  everywhere (`credit_balance`, `credits_reserved`, `credits_settled`, `price_usd`).
+  `credit_balance`; check it before a large batch. Add `?period=7d` (`24h`,
+  `7d`, `30d`; default `all`) to read the spend of a window; the reply repeats
+  `period`, `since` and `until`. Any other query parameter is refused with 400.
+  Credits are US dollars everywhere (`credit_balance`, `credits_reserved`,
+  `credits_settled`, `price_usd`).
 
 ## 3. Search
 
