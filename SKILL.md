@@ -113,8 +113,8 @@ curl -sS -X POST https://api.beatapi.io/v1/capabilities/run \
   return a task `id` and a `next` status call,
   `{"reference":"<same reference>","operation":"status","task_id":"<id>"}`.
   Repeat it every 5-10 s for media, 10-15 s for research, until `succeeded` or
-  `failed`; the result is in `data.output` (`media[]`, plus `r2_url`, the
-  primary asset again). Over MCP only research waits (up to
+  `failed`; the result is in `data.output` (`media[]`; read `media[0].url` —
+  `r2_url` is the same value, now deprecated). Over MCP only research waits (up to
   45 s) before answering; an image or video task comes back at once, and
   `queued` can last several minutes on some models (14 minutes seen) with no
   estimate, so keep polling its `task_id` with a growing interval. A music video can also stop at `requires_action`
@@ -136,15 +136,20 @@ curl -sS -X POST https://api.beatapi.io/v1/capabilities/run \
 
 ## 6. When something fails
 
+Every error is `{"error":{"code","message","retryable","request_id"}}`. Branch on
+`error.retryable`: when it is `false`, do not retry — fix the request or tell the
+user; when `true`, the same call may succeed later. A failed task carries the same
+`retryable`. Never loop a call whose `retryable` is `false`.
+
 | Status / code | Do this |
 | --- | --- |
 | 401 `missing_api_key` | The request had no key: add the `Authorization` header. |
 | 401 `invalid_api_key` | The key was rejected: ask the user to check it in their secure settings. Do not retry. |
 | 402 / `insufficient_credits` | Balance too low: send the user to <https://beatapi.io/dashboard/billing>. |
-| 400 | Inspect again and fix the named field. |
-| 404 `not_found` | Use one of `suggestions`, or search again. |
+| 400 `bad_request` | Inspect again and fix the named field. Not retryable. |
+| 404 `not_found` | The reference or model name does not exist: use one of `suggestions`, or check `GET /v1/models` for a text model. Not retryable — do not loop it. |
 | 429 | Wait `error.retry_after_seconds` seconds (also the `Retry-After` header; over MCP only the body is visible). Free keys are rate limited until the first top-up; batch work into fewer calls. |
-| 5xx on a sync call | It failed and was not charged. Retry once, then tell the user or try another capability. |
+| 5xx on a sync call (`retryable:true`) | It failed and was not charged. Retry once, then tell the user or try another capability. |
 | 5xx / timeout on an async start | Retry with the same `idempotency_key`; if you have a task id, poll its status instead. |
 | 403 `error code: 1010` | The edge refused Python's default User-Agent: send an explicit one. |
 
