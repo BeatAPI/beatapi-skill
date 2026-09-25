@@ -27,6 +27,9 @@ exactly as returned; never invent one.
 MCP also has `web_search`, `web_read`, `web_map` and `web_research` for the web.
 A Chinese, Japanese or Korean query searches in that language and region by
 itself; pass `language` / `country` (two-letter codes) only to override.
+Research with `"include_x": true` is best effort: X posts appear in `sources`
+only when the research relied on them, so a run can return none; `x_search` in
+the result says how many X searches it ran.
 
 ## 2. The API key
 
