@@ -96,7 +96,7 @@ curl -sS -X POST https://api.beatapi.io/v1/capabilities/run \
   header), and reuse it only to retry the same task.
 - **Sync** capabilities (social data, web search/read/map, text models, JEV)
   return the result. Send `"view":"preview"` for data: when the result has a
-  list, it is in `items` (the first `max_items`, default 5, up to 50, each
+  list, it is in `items` (the first `max_items`, default 10, up to 50, each
   trimmed), with `items_total` and `items_path` (where the list sits in the
   full result), so you never hunt for it. A trimmed result has `result_ref` and
   a `next`: for more, send

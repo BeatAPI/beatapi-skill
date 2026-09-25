@@ -28,7 +28,7 @@ comments, users, trends, …) with example references.
    (most liked), `comment_descending`, `collect_descending`, `time_descending`;
    `note_type` = `不限`, `视频笔记`, `普通笔记`; `time_filter` = `不限`, `一天内`,
    `一周内`, `半年内`. Send `"view":"preview"` first: the notes come back in
-   `items` (the first `max_items`, default 5, up to 50) and `items_total` says
+   `items` (the first `max_items`, default 10, up to 50) and `items_total` says
    how many the page had. Page 2+: pass `page` plus the `search_id` and
    `search_session_id` returned by the first page.
 
