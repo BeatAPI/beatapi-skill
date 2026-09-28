@@ -61,13 +61,18 @@ curl -sS -X POST https://api.beatapi.io/v1/capabilities/search \
   with example references and the `search` arguments that list the rest.
   An empty query returns the whole catalogue map.
 - Each result card has `reference`, `summary`, `price`, `readiness` and a one-line
-  input `signature`. `understood` shows which of your words counted; `hints`
+  input `signature`. The reply carries `understood`, `hints` and `recommended`
+  at the top level, not inside each card. `understood` shows which of your words
+  counted; `hints`
   explain how to rephrase when nothing matched. A specific query also names its
   pick in `recommended`: the top `reference`, `why_match` (the platform and
   terms that counted) and `missing_inputs`, the fields a Run must carry. When
   `readiness` is `ready` and the inputs are obvious, you can go straight to Run.
 - Optional fields: `platform` (slug or name, e.g. `xiaohongshu` or `小红书`),
-  `kind` (`model` | `data` | `workflow`), `limit` (1-50, default 5), `cursor`.
+  `kind` (`model` | `data` | `workflow`), `limit` (1-50, default 5), `cursor`,
+  `view` (`compact` by default; `full` returns complete contracts, including
+  `input_schema` and `schema_hash`, so a separate Inspect is unnecessary), and
+  `group_by: "function"` (return the `groups` overview explicitly).
 
 ## 4. Inspect
 
