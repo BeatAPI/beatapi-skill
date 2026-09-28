@@ -61,8 +61,8 @@ curl -sS -X POST https://api.beatapi.io/v1/capabilities/search \
   with example references and the `search` arguments that list the rest.
   An empty query returns the whole catalogue map.
 - Each result card has `reference`, `summary`, `price`, `readiness` and a one-line
-  input `signature`. The reply carries `understood`, `hints` and `recommended`
-  at the top level, not inside each card. `understood` shows which of your words
+  input `signature`. The search payload (the REST reply's `data` object)
+  carries `understood`, `hints` and `recommended`, not each card. `understood` shows which of your words
   counted; `hints`
   explain how to rephrase when nothing matched. A specific query also names its
   pick in `recommended`: the top `reference`, `why_match` (the platform and
