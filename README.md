@@ -11,7 +11,7 @@
 
 # BeatAPI Agent Skill
 
-BeatAPI is the **Agent Router for Everything**: one route to Model, Data, Tool,
+BeatAPI is the **professional capability layer for any agent**: one route to Model, Data, Tool,
 and Workspace capabilities. This repository teaches Agent Skills-compatible
 hosts when and how to discover, inspect, and run the capabilities currently
 available through BeatAPI.
@@ -38,7 +38,7 @@ copy of the public BeatAPI OpenAPI contract.
 ## Where this repository fits
 
 ```text
-Agent host -> BeatAPI Skill -> CLI or MCP -> BeatAPI -> Model · Data · Tool · Workspace
+Agent host -> BeatAPI Skill -> CLI or MCP -> BeatAPI -> Models · Social Data · SEO Data · Web Search · Workflows
 ```
 
 The Skill reflects the current public catalog and contract. Model and Social
@@ -150,5 +150,13 @@ prompts, fixtures, screenshots, or public issues. See [SECURITY.md](SECURITY.md)
 MIT
 
 <p align="center">
-  Built by <a href="https://beatapi.io/"><strong>BeatAPI</strong></a> — Agent Router for Everything.
+  Built by <a href="https://beatapi.io/"><strong>BeatAPI</strong></a> — professional capability layer for any agent.
 </p>
+
+## Current gateway update (0.3.0)
+
+The installable `beatapi-video` Skill retains its existing install name and media
+recipes, and now carries the current general capability guide and Web references.
+It teaches readiness, schema hashes, preview, field projection and free stored
+result reads. It supports the bundled MCP 0.4.0 and CLI 0.4.0 interfaces. Search
+and Inspect define availability and pricing; model lists are discovered at runtime.

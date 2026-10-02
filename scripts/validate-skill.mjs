@@ -73,6 +73,14 @@ for (const relativePath of linkedResources) {
 }
 
 const requiredCommands = [
+  "capabilities_search",
+  "capabilities_inspect",
+  "capabilities_run",
+  "web_search",
+  "web_read",
+  "web_map",
+  "web_research",
+  "capabilities result",
   "beatapi auth status",
   "beatapi workflows list",
   "beatapi usage",

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.0 — 2026-10-02
+
+- Ship current capability, result-view and Web guidance in the installable Skill and synchronize its OpenAPI.
+
+
 ## [Unreleased]
 
 ### Changed
