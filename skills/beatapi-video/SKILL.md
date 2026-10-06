@@ -7,8 +7,13 @@ description: Use when a user asks an agent to call BeatAPI Model, Social Data, S
 
 ## Current gateway contract
 
-Read [current.md](references/current.md) for the current Search → Inspect → Run
-loop, readiness, next calls, preview and stored result reads. It applies to text,
+Read [current.md](references/current.md) first: the index of the current Search →
+Inspect → Run loop and its next calls. Every `https://beatapi.io/skill-refs/<path>`
+page it links is bundled here as `references/<path>`; open the local copy:
+[search.md](references/search.md), [inspect.md](references/inspect.md) (readiness,
+schema hash), [run.md](references/run.md) (preview, stored result reads, polling),
+[errors.md](references/errors.md), [billing.md](references/billing.md),
+[free-models.md](references/free-models.md). The loop applies to text,
 image, video, decision, social data, SEO data and Web capabilities. Availability
 and price come from live Search and Inspect; never hardcode a list of models.
 

@@ -18,6 +18,10 @@
   following `next`.
 - Add `references/free-models.md`: list what is free right now through Search,
   read the limit from Inspect, and what a 429 on a free model means.
+- Bring the installable Skill's copy to the same structure:
+  `skills/beatapi-video/references/current.md` is now the index, the six new
+  pages are bundled beside it, and its `SKILL.md` says where the local copies
+  are. A test fails when a bundled copy drifts from its root source.
 - Rewrite the core `SKILL.md` for weak agents (about 7 KB, was 21 KB): one
   Search → Inspect → Run loop for every capability, a transport table, key
   format, copy-the-`next`-field guidance, text and JEV models through Run, and
