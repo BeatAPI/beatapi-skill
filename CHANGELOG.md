@@ -9,6 +9,15 @@
 
 ### Changed
 
+- Split the core `SKILL.md` into an index (66 lines, 3.6 KB, was 196 lines,
+  11 KB) plus stand-alone pages under `references/`: `search.md`, `inspect.md`,
+  `run.md`, `errors.md` and `billing.md` carry the former sections unchanged in
+  substance, each under 4.5 KB. The index keeps the three-call loop, the `next`
+  rule, the transport table, key handling, the rules that always apply and a
+  table of which page to open; an agent that opens no page can still finish by
+  following `next`.
+- Add `references/free-models.md`: list what is free right now through Search,
+  read the limit from Inspect, and what a 429 on a free model means.
 - Rewrite the core `SKILL.md` for weak agents (about 7 KB, was 21 KB): one
   Search → Inspect → Run loop for every capability, a transport table, key
   format, copy-the-`next`-field guidance, text and JEV models through Run, and

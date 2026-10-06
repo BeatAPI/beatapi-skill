@@ -18,7 +18,8 @@ Search, Inspect and Run handle like any other. Fields:
   each page comes back in `content` (Markdown or plain text, as `format` says;
   the field is always named `content`), with `truncated` when it was cut.
 - A query written in Chinese, Japanese or Korean searches in that language and
-  region by itself; pass `language` / `country` only to override.
+  region by itself; pass `language` / `country` (two-letter codes) only to
+  override.
 - To find pages inside one site, `web_map` it (narrow with `select_paths` such
   as `/docs/.*`), then read the URLs you need. Do not guess URLs. A URL ending
   in `sitemap.xml` is read as its list of URLs. An empty map

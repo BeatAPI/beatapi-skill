@@ -24,6 +24,9 @@ set up https://beatapi.io/SKILL.md
 
 The public, agent-readable setup entrypoint is [`SKILL.md`](SKILL.md). It gives
 the shortest path from a BeatAPI key to the unified Search → Inspect → Run loop.
+It is an index: the loop, the rules that always apply, and links to short
+stand-alone pages in [`references/`](references/) (published under
+`https://beatapi.io/skill-refs/`), so an agent loads only the page it needs.
 
 The installable Skill is self-contained at:
 
