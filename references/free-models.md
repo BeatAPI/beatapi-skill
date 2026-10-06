@@ -22,8 +22,8 @@ curl -sS -X POST https://api.beatapi.io/v1/capabilities/search \
   from the normal rate limit. Read the numbers from Inspect rather than from
   this page.
 - A 429 on a free model carries code `rate_limit_exceeded`: wait
-  `error.retry_after_seconds`, or use the paid model of the same name without
-  `-free`.
+  `error.retry_after_seconds`, or Search for the paid model of the same family
+  (its id is not always the free id minus `-free`).
 - Free models come with no stability guarantee and can be limited or withdrawn
   at any time; how long one stays available is not promised. A daily allowance
   may apply and is adjusted over time.
