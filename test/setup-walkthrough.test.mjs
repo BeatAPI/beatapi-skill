@@ -143,7 +143,7 @@ test('free models are discovered at run time, never hardcoded', () => {
   assert.match(free, /successful_requests_per_minute_after_top_up/);
   assert.match(free, /Read the numbers from Inspect/);
   assert.match(free, /rate_limit_exceeded/);
-  assert.match(free, /no stability guarantee/);
+  assert.match(free, /limited-time offer/);
   // The one id the page may name is the decision model its recipe covers.
   const ids = new Set([...free.matchAll(/model:([a-z0-9.-]+-free)/g)].map((match) => match[1]));
   assert.deepEqual([...ids], ['jev-1.13-free']);
