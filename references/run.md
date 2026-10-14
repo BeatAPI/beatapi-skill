@@ -19,6 +19,7 @@ Over MCP, pass the same JSON to `capabilities_run`.
   OpenAI's API does. Send a unique `idempotency_key` per task as a top-level field of
   the Run body, next to `reference` and `input` (or as an `Idempotency-Key`
   header), and reuse it only to retry the same task.
+- Reference media (images, videos, audio) is checked before a video task is created. A file outside the model's limits, or a reference image over 50 MB, gets a 400 that names the field, the index and the limit, and no task is created.
 - **Sync** capabilities (social data, web search/read/map, text models, JEV)
   return the result. Send `"view":"preview"` for data: when the result has a
   list, it is in `items` (the first `max_items`, default 10, up to 50, each

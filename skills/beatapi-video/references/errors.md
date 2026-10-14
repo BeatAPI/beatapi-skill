@@ -13,7 +13,8 @@ user; when `true`, the same call may succeed later. A failed task carries the sa
 | 401 `missing_api_key` | The request had no key: add the `Authorization` header. |
 | 401 `invalid_api_key` | The key was rejected: ask the user to check it in their secure settings. Do not retry. |
 | 402 / `insufficient_credits` | Balance too low: send the user to <https://beatapi.io/dashboard/billing>. |
-| 400 `bad_request` | Inspect again and fix the named field. Not retryable. |
+| 400 `bad_request` | Fix the named field. If the message lists the values the model takes (e.g. `available: 16:9, 9:16`), use one of them. Not retryable: never resend unchanged. |
+| 400 naming an input file (e.g. `reference_videos[1] runs at 15 frames per second; this model takes 24 to 60.`) | The file is outside the model's limits. Send a file within the stated limit. Not retryable. |
 | 404 `not_found` | Use `suggestions`, or `GET /v1/models` for text models. Not retryable; do not loop. |
 | 429 | Wait `error.retry_after_seconds` (or `Retry-After`; MCP sees only the body). Free keys are rate limited before first top-up; batch calls. |
 | 5xx on a sync call (`retryable:true`) | It failed and was not charged. Retry once, then tell the user or try another capability. |

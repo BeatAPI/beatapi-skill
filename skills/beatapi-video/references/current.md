@@ -56,6 +56,7 @@ Each page is short and stands alone. Open one when its row applies.
 | 小红书选题与趋势 (keyword expansion → note search → comments → summary) | <https://beatapi.io/skill-refs/recipes/xiaohongshu-topic-research.md> |
 | Competitor accounts on 抖音 / TikTok / 小红书 | <https://beatapi.io/skill-refs/recipes/competitor-accounts.md> |
 | N 选 1 decisions with JEV | <https://beatapi.io/skill-refs/recipes/decide-with-jev.md> |
+| Edit or extend a video with Seedance 2.5 (`task_type`) | <https://beatapi.io/skill-refs/recipes/seedance-video-edit-and-drafts.md> |
 
 Direct APIs for developers (`/v1/responses`, `/v1/systemone`, OpenAPI):
 <https://docs.beatapi.io/>. Source: <https://github.com/BeatAPI/beatapi-skill>.
