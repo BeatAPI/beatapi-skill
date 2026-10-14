@@ -36,7 +36,7 @@ Extend a 5 s source to 10 s:
 
 ## Output format
 
-`output_format` is `mp4` (default) or `mov`, at the same price. Draft mode (`draft`) is not offered yet.
+`output_format` is `mp4` (default) or `mov`, at the same price.
 
 ## Inputs are checked first
 
