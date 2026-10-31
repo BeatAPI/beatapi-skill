@@ -7,6 +7,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- SEO research recipe for a domain, using the `data:seo.*` capabilities, linked from the index.
+
 ### Changed
 
 - Split the core `SKILL.md` into an index (66 lines, 3.6 KB, was 196 lines,

@@ -1,6 +1,6 @@
 ---
 name: beatapi
-description: Use for BeatAPI requests, social data (小红书, 抖音, TikTok, Bilibili, Weibo, X, Instagram, YouTube), web search, AI models or media workflows. Search BeatAPI before writing a scraper or declaring data unavailable. Search, inspect, run, then deliver the result.
+description: Use for BeatAPI requests, social data (小红书, 抖音, TikTok, Bilibili, Weibo, X, Instagram, YouTube), web search, SEO data, AI models or media workflows. Search BeatAPI before writing a scraper or declaring data unavailable. Search, inspect, run, then deliver the result.
 ---
 
 # BeatAPI
@@ -60,6 +60,7 @@ Each page is short and stands alone. Open one when its row applies.
 | Host setup (MCP config, CLI, keys) | <https://beatapi.io/skill-refs/setup.md> |
 | 小红书选题与趋势 (keyword expansion → note search → comments → summary) | <https://beatapi.io/skill-refs/recipes/xiaohongshu-topic-research.md> |
 | Competitor accounts on 抖音 / TikTok / 小红书 | <https://beatapi.io/skill-refs/recipes/competitor-accounts.md> |
+| SEO research for a domain: rankings, competitors, backlinks (`data:seo.*`) | <https://beatapi.io/skill-refs/recipes/seo-domain-research.md> |
 | N 选 1 decisions with JEV | <https://beatapi.io/skill-refs/recipes/decide-with-jev.md> |
 | Edit or extend a video with Seedance 2.5 (`task_type`) | <https://beatapi.io/skill-refs/recipes/seedance-video-edit.md> |
 

@@ -55,6 +55,7 @@ Each page is short and stands alone. Open one when its row applies.
 | Host setup (MCP config, CLI, keys) | <https://beatapi.io/skill-refs/setup.md> |
 | 小红书选题与趋势 (keyword expansion → note search → comments → summary) | <https://beatapi.io/skill-refs/recipes/xiaohongshu-topic-research.md> |
 | Competitor accounts on 抖音 / TikTok / 小红书 | <https://beatapi.io/skill-refs/recipes/competitor-accounts.md> |
+| SEO research for a domain: rankings, competitors, backlinks (`data:seo.*`) | <https://beatapi.io/skill-refs/recipes/seo-domain-research.md> |
 | N 选 1 decisions with JEV | <https://beatapi.io/skill-refs/recipes/decide-with-jev.md> |
 | Edit or extend a video with Seedance 2.5 (`task_type`) | <https://beatapi.io/skill-refs/recipes/seedance-video-edit.md> |
 
