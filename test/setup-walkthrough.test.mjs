@@ -125,6 +125,9 @@ test('key handling is explicit about format and secrecy', () => {
   assert.match(billing, /ends in `-token`/);
   assert.match(billing, /no synchronous `\/v1\/images\/generations`/);
   assert.match(page('run'), /`-token` image models are async only/);
+  assert.match(billing, /billed one price per GIF/);
+  assert.match(billing, /`output_format`\n  `png` \(default\) or `gif`/);
+  assert.match(page('run'), /GPT Image 2\.6 can return a GIF/);
 });
 
 test('errors branch on retryable and name the key failures', () => {

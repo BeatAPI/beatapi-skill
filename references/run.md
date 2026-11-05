@@ -49,6 +49,8 @@ Over MCP, pass the same JSON to `capabilities_run`.
   the user's choice.
   `-token` image models are async only and billed by tokens:
   <https://beatapi.io/skill-refs/billing.md>.
+  GPT Image 2.6 can return a GIF (`output_format` `gif`, prompt only):
+  <https://beatapi.io/skill-refs/billing.md>.
 - **Text models** run the same way: `{"reference":"model:<id>","input":{"input":"<prompt>"}}`
   returns `output_text`; `usage` token counts may include upstream system prompts
   and are not comparable across models. **Decision model** JEV:
