@@ -82,7 +82,8 @@ test('one loop for every capability, driven by the next field', () => {
   // Text and decision models run through the same Run call.
   assert.match(run, /"reference":"model:<id>","input":\{"input":"<prompt>"\}/);
   assert.match(run, /output_text/);
-  assert.match(run, /model:jev-1\.13-free/);
+  assert.match(run, /model:jev-1\.13"/);
+  assert.doesNotMatch(run, /jev-1\.1[34]-free/);
   assert.match(run, /at most 10 criteria/);
   for (const [path, text] of everything) {
     assert.doesNotMatch(text, /\/v1\/capabilities\/run\/status/, path);
@@ -144,7 +145,7 @@ test('free models are discovered at run time, never hardcoded', () => {
   assert.match(free, /Read the numbers from Inspect/);
   assert.match(free, /rate_limit_exceeded/);
   assert.match(free, /limited-time offer/);
-  // The one id the page may name is the decision model its recipe covers.
+  // Free ids change; the page names none of them.
   const ids = new Set([...free.matchAll(/model:([a-z0-9.-]+-free)/g)].map((match) => match[1]));
-  assert.deepEqual([...ids], ['jev-1.13-free']);
+  assert.deepEqual([...ids], []);
 });

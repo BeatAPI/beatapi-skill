@@ -4,15 +4,15 @@ JEV is a decision model: give it the current state and typed questions, get back
 typed answers with probabilities. It writes no prose, so there is nothing to
 parse. Use it to pick one option, score something on a scale, or answer yes/no.
 
-References: `model:jev-1.13-free` (free, rate limited until the account's first
-top-up) and `model:jev-1.13` (paid, billed per input token; output is free).
-Inspect either for the full schema.
+References: `model:jev-1.13` and `model:jev-1.14` (paid, billed per input token;
+output is free). Both follow the latest JEV release. Inspect either for the full
+schema. There is no free JEV model.
 
 ## Run
 
 ```json
 {
-  "reference": "model:jev-1.13-free",
+  "reference": "model:jev-1.13",
   "input": {
     "state": "We sell a $29/month writing tool. Three landing-page headlines are drafted below. Audience: freelance marketers.\n1) Write faster\n2) Your drafts, done by lunch\n3) AI writing for marketers",
     "questions": {

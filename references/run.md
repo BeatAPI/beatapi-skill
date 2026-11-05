@@ -50,7 +50,7 @@ Over MCP, pass the same JSON to `capabilities_run`.
 - **Text models** run the same way: `{"reference":"model:<id>","input":{"input":"<prompt>"}}`
   returns `output_text`; `usage` token counts may include upstream system prompts
   and are not comparable across models. **Decision model** JEV:
-  `{"reference":"model:jev-1.13-free","input":{"state":"…","questions":{…}}}` returns
+  `{"reference":"model:jev-1.13","input":{"state":"…","questions":{…}}}` returns
   typed answers with probabilities (question types `noul`, `choice`, `score`;
   a `noul` needs `instructions`, the yes/no question; `score` takes
   at most 10 criteria). To rank many candidates use **one** call:

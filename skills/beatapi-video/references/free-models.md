@@ -26,6 +26,3 @@ curl -sS -X POST https://api.beatapi.io/v1/capabilities/search \
   (its id is not always the free id minus `-free`).
 - Free models are a limited-time offer: callable right after signup, with no
   top-up and no card required.
-- A decision model is among them: `model:jev-1.13-free`. It takes `state` and
-  `questions` instead of a prompt:
-  <https://beatapi.io/skill-refs/recipes/decide-with-jev.md>.
