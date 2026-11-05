@@ -122,6 +122,9 @@ test('key handling is explicit about format and secrecy', () => {
   assert.match(billing, /Configure it privately/);
   assert.match(billing, /GET https:\/\/api\.beatapi\.io\/v1\/usage/);
   assert.match(billing, /Credits are US dollars everywhere/);
+  assert.match(billing, /ends in `-token`/);
+  assert.match(billing, /no synchronous `\/v1\/images\/generations`/);
+  assert.match(page('run'), /`-token` image models are async only/);
 });
 
 test('errors branch on retryable and name the key failures', () => {

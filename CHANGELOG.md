@@ -9,6 +9,9 @@
 
 ### Added
 
+- Token-billed image models (`-token` IDs): how they are charged (reserved estimate,
+  settled tokens), the GPT `quality` setting, and that they run as async tasks only,
+  in `billing.md`, with a pointer from `run.md`.
 - SEO research recipe for a domain, using the `data:seo.*` capabilities, linked from the index.
 
 ### Changed

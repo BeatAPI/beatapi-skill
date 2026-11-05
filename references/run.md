@@ -47,6 +47,8 @@ Over MCP, pass the same JSON to `capabilities_run`.
   45 s) before answering; an image or video task comes back at once. A music
   video can also stop at `requires_action` or `storyboard_ready`, which needs
   the user's choice.
+  `-token` image models are async only and billed by tokens:
+  <https://beatapi.io/skill-refs/billing.md>.
 - **Text models** run the same way: `{"reference":"model:<id>","input":{"input":"<prompt>"}}`
   returns `output_text`; `usage` token counts may include upstream system prompts
   and are not comparable across models. **Decision model** JEV:
