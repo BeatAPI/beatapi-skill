@@ -27,5 +27,20 @@ a call cost. The main Skill is <https://beatapi.io/skill.md>.
 - Report cost from the response's `usage` (`price_usd`, sync calls) or the
   task's `credits_settled`; both are US dollars.
 
+## Token-billed image models
+
+- An image model whose ID ends in `-token` (`gpt-image-2-token`,
+  `nano-banana-2-token`, …) is its base model billed by the tokens each image
+  uses, not a flat price per image. Same request fields as the base model.
+- `credits_reserved` is the estimate held when the task is created;
+  `credits_settled` is the tokens the render actually used, so the two can
+  differ. A failed task is not charged. Rates per 1M tokens and per-image
+  estimates: <https://beatapi.io/pricing>.
+- The GPT ones take an optional `quality` (Inspect lists the levels; default
+  `medium`) that sets the output tokens and so the price. Their fixed-price
+  GPT models refuse `quality`; the Nano Banana ones have no `quality`.
+- Async only: run them like any image task and poll until `succeeded`. There is
+  no synchronous `/v1/images/generations` for them.
+
 Balance too low (402) or a rejected key (401): <https://beatapi.io/skill-refs/errors.md>.
 Connecting a host: <https://beatapi.io/skill-refs/setup.md>.
