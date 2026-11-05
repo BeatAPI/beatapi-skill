@@ -42,5 +42,16 @@ a call cost. The main Skill is <https://beatapi.io/skill.md>.
 - Async only: run them like any image task and poll until `succeeded`. There is
   no synchronous `/v1/images/generations` for them.
 
+## GIF images (GPT Image 2.6)
+
+- `gpt-image-2.6-flare` and `gpt-image-2.6-sunburst` take `output_format`
+  `png` (default) or `gif`, and have no `background`. A PNG is billed per
+  image by resolution tier (1K, 2K or 4K); a GIF is billed one price per GIF,
+  whatever its size. Prices: <https://beatapi.io/pricing>.
+- A GIF is a short animation made from the prompt alone: send no `images`,
+  `size`, `resolution` or `aspect_ratio`. The model picks its size (about
+  300–1024 px) and frame count; `frame_count` and `frame_duration_ms` are not
+  fields.
+
 Balance too low (402) or a rejected key (401): <https://beatapi.io/skill-refs/errors.md>.
 Connecting a host: <https://beatapi.io/skill-refs/setup.md>.

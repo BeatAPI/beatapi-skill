@@ -9,6 +9,8 @@
 
 ### Added
 
+- GPT Image 2.6 Flare and Sunburst: `output_format` `png` or `gif`, the GIF limits and how a
+  GIF is billed (one price per GIF) in `billing.md`, with a pointer from `run.md`.
 - Token-billed image models (`-token` IDs): how they are charged (reserved estimate,
   settled tokens), the GPT `quality` setting, and that they run as async tasks only,
   in `billing.md`, with a pointer from `run.md`.
