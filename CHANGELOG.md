@@ -9,6 +9,9 @@
 
 ### Added
 
+- GPT Image 2.6 naming: Flare and Sunburst are now `-beta` (fixed price per image); the bare
+  names are the official version billed per token, with `quality` and a GIF whose `size` is
+  honoured. The `-beta` rule is stated in `billing.md`.
 - GPT Image 2.6 Flare and Sunburst: `output_format` `png` or `gif`, the GIF limits and how a
   GIF is billed (one price per GIF) in `billing.md`, with a pointer from `run.md`.
 - Token-billed image models (`-token` IDs): how they are charged (reserved estimate,

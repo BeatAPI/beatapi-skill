@@ -42,16 +42,30 @@ a call cost. The main Skill is <https://beatapi.io/skill.md>.
 - Async only: run them like any image task and poll until `succeeded`. There is
   no synchronous `/v1/images/generations` for them.
 
-## GIF images (GPT Image 2.6)
+## GPT Image 2.6 (-beta and official)
 
-- `gpt-image-2.6-flare` and `gpt-image-2.6-sunburst` take `output_format`
-  `png` (default) or `gif`, and have no `background`. A PNG is billed per
-  image by resolution tier (1K, 2K or 4K); a GIF is billed one price per GIF,
-  whatever its size. Prices: <https://beatapi.io/pricing>.
-- A GIF is a short animation made from the prompt alone: send no `images`,
-  `size`, `resolution` or `aspect_ratio`. The model picks its size (about
-  300–1024 px) and frame count; `frame_count` and `frame_duration_ms` are not
-  fields.
+- Naming: a `-beta` suffix marks a lower-cost version served through
+  third-party lines at a fixed price per image; the bare name is the official
+  version, billed per token.
+- `gpt-image-2.6-flare-beta` and `gpt-image-2.6-sunburst-beta` are billed a
+  fixed price per image: a PNG by resolution tier (1K, 2K or 4K); a GIF is
+  billed one price per GIF, whatever its size. They take `output_format`
+  `png` (default) or `gif`, and have no `background` and no `quality`.
+  Prices: <https://beatapi.io/pricing>.
+- `gpt-image-2.6-flare` and `gpt-image-2.6-sunburst` are the official version,
+  billed by tokens like the `-token` models above, at 90% of OpenAI's list
+  price (list per 1M tokens: text input $5, image input $8, image output $30).
+  They take the optional `quality` (`low`, `medium`, `high`, `xhigh`, `max`;
+  default `medium`), which sets the output tokens and so the price, and
+  `output_format` `png` or `gif`. Async only, like the `-token` models.
+- A GIF is a short animation made from the prompt alone: send no `images`;
+  `n` is 1.
+  - On the `-beta` models the spec is fixed by the model (each side about
+    300-1024 px, 8-9 frames): send no `size`, `resolution` or `aspect_ratio`;
+    `frame_count` and `frame_duration_ms` are not fields.
+  - On the official models `size` is honoured (each frame edge up to about
+    960 px); a GIF is always 9 frames of 200 ms, so `frame_count` and
+    `frame_duration_ms` are not supported.
 
 Balance too low (402) or a rejected key (401): <https://beatapi.io/skill-refs/errors.md>.
 Connecting a host: <https://beatapi.io/skill-refs/setup.md>.
