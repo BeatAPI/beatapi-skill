@@ -27,18 +27,27 @@ a call cost. The main Skill is <https://beatapi.io/skill.md>.
 - Report cost from the response's `usage` (`price_usd`, sync calls) or the
   task's `credits_settled`; both are US dollars.
 
-## Token-billed image models
+## Token-billed image models (-std)
 
-- An image model whose ID ends in `-token` (`gpt-image-2-token`,
-  `nano-banana-2-token`, …) is its base model billed by the tokens each image
-  uses, not a flat price per image. Same request fields as the base model.
+- Naming rule: a `-beta` suffix is the lower-cost version at a fixed price per
+  image; the official version is billed per token. For GPT Image 2.6 that is
+  the bare name; for older families it carries `-std`. Model IDs are lowercase.
+- The `-std` IDs are `gpt-image-2-std`, `gpt-image-2.5-flare-std`,
+  `gpt-image-2.5-sunburst-std`, `nano-banana-2-std`, `nano-banana-pro-std` and
+  `nano-banana-2-lite-std`. Each is its base model billed by the tokens each
+  image uses, not a flat price per image. Same request fields as the base
+  model; the Nano Banana ones are the same models billed per token.
 - `credits_reserved` is the estimate held when the task is created;
   `credits_settled` is the tokens the render actually used, so the two can
   differ. A failed task is not charged. Rates per 1M tokens and per-image
   estimates: <https://beatapi.io/pricing>.
-- The GPT ones take an optional `quality` (Inspect lists the levels; default
-  `medium`) that sets the output tokens and so the price. Their fixed-price
-  GPT models refuse `quality`; the Nano Banana ones have no `quality`.
+- Only the official ids take `quality` (Inspect lists the levels; default
+  `medium`), which sets the output tokens and so the price: `gpt-image-2-std`
+  `low`, `medium`, `high`; `gpt-image-2.5-*-std` and the GPT Image 2.6 bare
+  names `low`, `medium`, `high`, `xhigh`, `max`. The fixed-price siblings
+  (`gpt-image-2`, `gpt-image-2.5-*`, `gpt-image-2.6-*-beta`) refuse `quality`;
+  the Nano Banana ones have no `quality`. Transparent background is not
+  offered on `-std`.
 - Async only: run them like any image task and poll until `succeeded`. There is
   no synchronous `/v1/images/generations` for them.
 
@@ -53,11 +62,11 @@ a call cost. The main Skill is <https://beatapi.io/skill.md>.
   `png` (default) or `gif`, and have no `background` and no `quality`.
   Prices: <https://beatapi.io/pricing>.
 - `gpt-image-2.6-flare` and `gpt-image-2.6-sunburst` are the official version,
-  billed by tokens like the `-token` models above, at 90% of OpenAI's list
+  billed by tokens like the `-std` models above, at 90% of OpenAI's list
   price (list per 1M tokens: text input $5, image input $8, image output $30).
   They take the optional `quality` (`low`, `medium`, `high`, `xhigh`, `max`;
   default `medium`), which sets the output tokens and so the price, and
-  `output_format` `png` or `gif`. Async only, like the `-token` models.
+  `output_format` `png` or `gif`; only these take a custom GIF `size`. Async only, like the `-std` models.
 - A GIF is a short animation made from the prompt alone: send no `images`;
   `n` is 1.
   - On the `-beta` models the spec is fixed by the model (each side about

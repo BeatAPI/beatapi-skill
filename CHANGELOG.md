@@ -14,9 +14,13 @@
   honoured. The `-beta` rule is stated in `billing.md`.
 - GPT Image 2.6 Flare and Sunburst: `output_format` `png` or `gif`, the GIF limits and how a
   GIF is billed (one price per GIF) in `billing.md`, with a pointer from `run.md`.
-- Token-billed image models (`-token` IDs): how they are charged (reserved estimate,
-  settled tokens), the GPT `quality` setting, and that they run as async tasks only,
-  in `billing.md`, with a pointer from `run.md`.
+- Token-billed image models renamed from `-token` to `-std` (`gpt-image-2-std`,
+  `gpt-image-2.5-flare-std`, `gpt-image-2.5-sunburst-std`, `nano-banana-2-std`,
+  `nano-banana-pro-std`, `nano-banana-2-lite-std`); the old ids are removed, not
+  aliased. Behaviour and prices are unchanged. `billing.md` states the naming rule
+  (`-beta` = fixed price per image; official = per token, bare name on GPT Image 2.6,
+  `-std` on older families) and which ids take `quality` and a custom GIF `size`.
+  Charging (reserved estimate, settled tokens) and async-only runs are as before.
 - SEO research recipe for a domain, using the `data:seo.*` capabilities, linked from the index.
 
 ### Changed

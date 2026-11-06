@@ -122,9 +122,9 @@ test('key handling is explicit about format and secrecy', () => {
   assert.match(billing, /Configure it privately/);
   assert.match(billing, /GET https:\/\/api\.beatapi\.io\/v1\/usage/);
   assert.match(billing, /Credits are US dollars everywhere/);
-  assert.match(billing, /ends in `-token`/);
+  assert.match(billing, /carries `-std`/);
   assert.match(billing, /no synchronous `\/v1\/images\/generations`/);
-  assert.match(page('run'), /`-token` image models are async only/);
+  assert.match(page('run'), /`-std` and GPT Image 2.6 bare-name image models are async only/);
   assert.match(billing, /billed one price per GIF/);
   assert.match(billing, /`output_format`\n  `png` \(default\) or `gif`/);
   assert.match(page('run'), /GPT Image 2\.6 can return a GIF/);
