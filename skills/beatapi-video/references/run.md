@@ -47,7 +47,7 @@ Over MCP, pass the same JSON to `capabilities_run`.
   45 s) before answering; an image or video task comes back at once. A music
   video can also stop at `requires_action` or `storyboard_ready`, which needs
   the user's choice.
-  `-token` image models are async only and billed by tokens:
+  `-std` and GPT Image 2.6 bare-name image models are async only, billed by tokens:
   <https://beatapi.io/skill-refs/billing.md>.
   GPT Image 2.6 can return a GIF (`output_format` `gif`, prompt only):
   <https://beatapi.io/skill-refs/billing.md>.
