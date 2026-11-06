@@ -46,8 +46,9 @@ a call cost. The main Skill is <https://beatapi.io/skill.md>.
   `low`, `medium`, `high`; `gpt-image-2.5-*-std` and the GPT Image 2.6 bare
   names `low`, `medium`, `high`, `xhigh`, `max`. The fixed-price siblings
   (`gpt-image-2`, `gpt-image-2.5-*`, `gpt-image-2.6-*-beta`) refuse `quality`;
-  the Nano Banana ones have no `quality`. Transparent background is not
-  offered on `-std`.
+  the Nano Banana ones have no `quality`.
+- The GPT `-std` ids accept `background` `auto`, `opaque` or `transparent`, as
+  their base models do.
 - Async only: run them like any image task and poll until `succeeded`. There is
   no synchronous `/v1/images/generations` for them.
 
