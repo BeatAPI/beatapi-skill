@@ -59,6 +59,7 @@ Each page is short and stands alone. Open one when its row applies.
 | SEO research for a domain: rankings, competitors, backlinks (`data:seo.*`) | <https://beatapi.io/skill-refs/recipes/seo-domain-research.md> |
 | N 选 1 decisions with JEV | <https://beatapi.io/skill-refs/recipes/decide-with-jev.md> |
 | Edit or extend a video with Seedance 2.5 (`task_type`) | <https://beatapi.io/skill-refs/recipes/seedance-video-edit.md> |
+| 音乐 / 歌曲 / 写歌 / Suno: write a song, then extend it, split stems or convert to WAV (`model:suno-v6`, `action`) | <https://beatapi.io/skill-refs/recipes/music-song.md> |
 
 Direct APIs for developers (`/v1/responses`, `/v1/systemone`, OpenAPI):
 <https://docs.beatapi.io/>. Source: <https://github.com/BeatAPI/beatapi-skill>.

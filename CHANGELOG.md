@@ -9,6 +9,10 @@
 
 ### Added
 
+- Music recipe (`recipes/music-song.md`, trigger words 音乐, 歌曲, 写歌, Suno): write a song with
+  `model:suno-v6` in simple or custom mode, then extend it, split stems or convert it to WAV
+  through `action`, with the per-call prices, the follow-up fields (`source_task_id`, `audio_id`),
+  the `output.tracks` result and the file lifetimes.
 - API surface of 2026-11-26: results are read from `output.url` (`media[]` lists every file,
   `r2_url` is the old name); `GET /v1/tasks`, `callback_url` and case-insensitive enum values in
   the new `tasks.md`; 405 `method_not_allowed`, the `error` object, 404 for unknown paths and the
