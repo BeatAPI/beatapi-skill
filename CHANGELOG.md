@@ -9,6 +9,13 @@
 
 ### Added
 
+- API surface of 2026-11-26: results are read from `output.url` (`media[]` lists every file,
+  `r2_url` is the old name); `GET /v1/tasks`, `callback_url` and case-insensitive enum values in
+  the new `tasks.md`; 405 `method_not_allowed`, the `error` object, 404 for unknown paths and the
+  edit-without-image `bad_request` in `errors.md`; `requires_topup`, `catalog_features` and
+  single-value `next` prefill in `search.md`, `inspect.md` and `free-models.md`;
+  `pricing.tiers[].surcharges` in `inspect.md` and `billing.md`. The bundled OpenAPI is
+  re-synchronized from the BeatAPI documentation contract.
 - GPT Image 2.6 naming: Flare and Sunburst are now `-beta` (fixed price per image); the bare
   names are the official version billed per token, with `quality` and a GIF whose `size` is
   honoured. The `-beta` rule is stated in `billing.md`.

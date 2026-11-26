@@ -32,6 +32,7 @@ handling and output separation stay consistent.
 | Read Realtime session | `beatapi_get_realtime_session` | `beatapi realtime sessions get SESSION` | `GET /v1/realtime/sessions/{session_id}` |
 | Close Realtime session | `beatapi_close_realtime_session` | `beatapi realtime sessions close SESSION` | `DELETE /v1/realtime/sessions/{session_id}` |
 | Read task | `beatapi_get_task` | `beatapi tasks get TASK` | `GET /v1/tasks/{task_id}` |
+| List tasks | Not agent-exposed | Client/OpenAPI | `GET /v1/tasks` |
 | Wait for task | `beatapi_wait_for_task` | `beatapi tasks wait TASK` | Repeated task lookup |
 | List webhooks | `beatapi_list_webhooks` | `beatapi webhooks list` | `GET /v1/webhooks` |
 | Create webhook | Not agent-exposed; use trusted server-side code or dashboard | Not allowed in Skills-only mode | `POST /v1/webhooks` |
@@ -59,8 +60,23 @@ queued -> processing -> storyboard_ready/requires_action
        -> composing -> succeeded/failed
 ```
 
-Poll every 5-10 seconds with jitter and a bounded attempt count. Successful
-hosted files appear in `data.output.media[]`.
+Poll every 5-10 seconds with jitter and a bounded attempt count. Read the
+result from `data.output.url` (the primary asset: the first video, else the
+first image); `data.output.media[]` lists every hosted file and `r2_url` is the
+old name of `url`.
+
+`GET /v1/tasks` lists the account's tasks, newest first, in the same shape as
+the task lookup. Filters: `status` (`queued`, `processing`, `succeeded`,
+`failed`), `model`, `created_after`, `created_before`, `api_key_id` and `limit`
+(1-100); pass `next_cursor` back as `cursor` for the next page. Calls that answer
+inside the response (social data, web, SEO, text) are not tasks and are not
+listed.
+
+`callback_url` is accepted only by `POST /v1/images/tasks` and
+`POST /v1/videos/tasks`: a public HTTPS URL that shares scheme, host and port
+with an already registered, enabled webhook endpoint, whose secret signs the
+delivery. Enum values are matched ignoring case; write the canonical spelling
+from the contract (`1080p`, `4K`, `fast`).
 
 For exact schemas, enums, examples, and response shapes, read
 `beatapi.openapi.yaml` in this directory.

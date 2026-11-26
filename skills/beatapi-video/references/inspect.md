@@ -25,6 +25,17 @@ Read `input_schema` (required fields, types, limits), `pricing`, `execution.mode
 $0.15, Quality $1.85 for the same 8 s). Pick the tier before a paid run; the
 task's `credits_reserved` is that tier's price.
 
+A `model:` contract also carries `requires_topup` (see Search): `true` means an
+account that has never topped up is refused it with 403 `forbidden`; `false`
+only means at least one tier is open.
+
+A tier may carry `surcharges`, a list of `{unit, spec, price_usd}`: what each
+extra item adds on top of that tier's `price_usd`. `unit` is `reference_image`,
+`reference_video_second` or `element`. For reference video the price is relative
+to the 8 seconds the quoted tier already includes, so the figure is the step
+from 8 to 9 seconds. Where a charge is not linear in the count, `spec` says so.
+Budget a run as the tier price plus the surcharges for the extras you send.
+
 A guessed or misspelled reference returns 404 with `suggestions`. `schema_hash`
 fingerprints `input_schema` and `output_schema` together: cache a contract by it,
 and re-inspect only when a later reply shows a different hash.

@@ -24,5 +24,8 @@ curl -sS -X POST https://api.beatapi.io/v1/capabilities/search \
 - A 429 on a free model carries code `rate_limit_exceeded`: wait
   `error.retry_after_seconds`, or Search for the paid model of the same family
   (its id is not always the free id minus `-free`).
+- A `model:` card and Inspect carry `requires_topup`: `true` means an account
+  that has never topped up is refused the model with 403 `forbidden`; `false`
+  only means at least one tier is open, not that every call passes.
 - Free models are a limited-time offer: callable right after signup, with no
   top-up and no card required.

@@ -38,19 +38,19 @@ Over MCP, pass the same JSON to `capabilities_run`.
   `{"reference":"<same reference>","operation":"status","task_id":"<id>"}`.
   Repeat it until `succeeded` or `failed`, waiting the task's
   `poll_after_seconds` between calls (5 s for images, 8 s for video, 10 s for
-  workflows and research); the result is in `data.output` (`media[]`; read
-  `media[0].url` — `r2_url` is the same value, now deprecated). A running task
+  workflows and research); the result is in `data.output`: read `output.url`
+  (primary asset; `media[]` lists every file, `r2_url` is its old name). A running task
   may also carry `typical_seconds` (`p50`, `p90`, `samples`, `window`): how long
   that model recently took from accepted to done. Past `p90` with no change,
-  tell the user it is running long; there is no ETA beyond that, and `queued`
+  tell the user it is running long; `queued`
   can last several minutes on some models. Over MCP only research waits (up to
   45 s) before answering; an image or video task comes back at once. A music
   video can also stop at `requires_action` or `storyboard_ready`, which needs
   the user's choice.
-  `-std` and GPT Image 2.6 bare-name image models are async only, billed by tokens:
+  `-std` and GPT Image 2.6 bare-name image models are async only, billed by tokens.
+  GPT Image 2.6 can return a GIF (`output_format` `gif`, prompt only). Both:
   <https://beatapi.io/skill-refs/billing.md>.
-  GPT Image 2.6 can return a GIF (`output_format` `gif`, prompt only):
-  <https://beatapi.io/skill-refs/billing.md>.
+  Task list, `callback_url`, enum spelling: <https://beatapi.io/skill-refs/tasks.md>.
 - **Text models** run the same way: `{"reference":"model:<id>","input":{"input":"<prompt>"}}`
   returns `output_text`; `usage` token counts may include upstream system prompts
   and are not comparable across models. **Decision model** JEV:

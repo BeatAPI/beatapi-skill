@@ -23,6 +23,17 @@ Over MCP, pass the same JSON to `capabilities_search`.
   (matched words), `hints` (rephrasing advice), and, for specific queries, `recommended`.
   `recommended` contains the top `reference`, `why_match` and `missing_inputs`.
   When `readiness` is `ready` and inputs are obvious, you can go straight to Run.
+- A `model:` card carries `requires_topup`: `true` means an account that has
+  never topped up is refused that model with 403 `forbidden`; `false` only
+  means at least one tier is open, not that every call passes (a closed tier is
+  refused the same way). It appears on `model:` capabilities only, never on
+  `data:` or `workflow:`.
+- The reply lists `catalog_features` (`requires_topup`, `next_prefill`,
+  `media_overview`): what this gateway supports. A query of media words alone
+  ranks social data actions down, and `next` follows the first example of the
+  overview.
+- In `next.call`, a required input that admits a single value is already filled
+  in; replace only the `<placeholders>` that remain.
 - Optional: `platform` (slug/name), `kind` (`model` | `data` | `workflow`),
   `limit` (1-50, default 5), `cursor`, `view` (`compact` default or `full` with
   `input_schema` and `schema_hash`, skipping Inspect), and `group_by: "function"`

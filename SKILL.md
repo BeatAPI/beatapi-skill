@@ -53,6 +53,7 @@ Each page is short and stands alone. Open one when its row applies.
 | Search finds nothing useful, or you want filters, overviews, paging | <https://beatapi.io/skill-refs/search.md> |
 | Reading a contract: readiness, price tiers, `schema_hash` | <https://beatapi.io/skill-refs/inspect.md> |
 | Running: previews and `items`, async tasks and polling, idempotency, text models, JEV | <https://beatapi.io/skill-refs/run.md> |
+| A finished task's `output.url`, listing tasks, `callback_url`, enum spelling | <https://beatapi.io/skill-refs/tasks.md> |
 | Any error, a 429 or a timeout | <https://beatapi.io/skill-refs/errors.md> |
 | Keys, balance, usage, reporting what a call cost | <https://beatapi.io/skill-refs/billing.md> |
 | Free models: what is free right now, and its limits | <https://beatapi.io/skill-refs/free-models.md> |

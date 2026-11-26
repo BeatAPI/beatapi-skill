@@ -266,7 +266,9 @@ Return:
 - the next required action for `storyboard_ready` or `requires_action`.
 
 Call async media generation complete only when status is `succeeded` and
-`output.media[]` contains hosted media. Treat `GET /v1/tasks/{task_id}` as the
+`output.url` (the primary asset: the first video, else the first image) is
+present; `output.media[]` lists every hosted output and `output.r2_url` is the
+old name of `output.url`. Treat `GET /v1/tasks/{task_id}` as the
 source of truth even when webhooks are configured.
 
 ## Respond to failures

@@ -26,6 +26,10 @@ a call cost. The main Skill is <https://beatapi.io/skill.md>.
 
 - Report cost from the response's `usage` (`price_usd`, sync calls) or the
   task's `credits_settled`; both are US dollars.
+- A tier in Inspect `pricing.tiers` may carry `surcharges`
+  (`{unit, spec, price_usd}`; `unit` is `reference_image`,
+  `reference_video_second` or `element`). Budget the tier price plus them;
+  reference-video seconds count from the 8 s the quoted price already includes.
 
 ## Token-billed image models (-std)
 
@@ -36,7 +40,7 @@ a call cost. The main Skill is <https://beatapi.io/skill.md>.
   `gpt-image-2.5-sunburst-std`, `nano-banana-2-std`, `nano-banana-pro-std` and
   `nano-banana-2-lite-std`. Each is its base model billed by the tokens each
   image uses, not a flat price per image. Same request fields as the base
-  model; the Nano Banana ones are the same models billed per token.
+  model.
 - `credits_reserved` is the estimate held when the task is created;
   `credits_settled` is the tokens the render actually used, so the two can
   differ. A failed task is not charged. Rates per 1M tokens and per-image
@@ -49,14 +53,10 @@ a call cost. The main Skill is <https://beatapi.io/skill.md>.
   the Nano Banana ones have no `quality`.
 - The GPT `-std` ids accept `background` `auto`, `opaque` or `transparent`, as
   their base models do.
-- Async only: run them like any image task and poll until `succeeded`. There is
-  no synchronous `/v1/images/generations` for them.
+- Async only: poll until `succeeded`; there is no synchronous `/v1/images/generations` for them.
 
 ## GPT Image 2.6 (-beta and official)
 
-- Naming: a `-beta` suffix marks a lower-cost version served through
-  third-party lines at a fixed price per image; the bare name is the official
-  version, billed per token.
 - `gpt-image-2.6-flare-beta` and `gpt-image-2.6-sunburst-beta` are billed a
   fixed price per image: a PNG by resolution tier (1K, 2K or 4K); a GIF is
   billed one price per GIF, whatever its size. They take `output_format`
