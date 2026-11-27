@@ -60,6 +60,7 @@ Each page is short and stands alone. Open one when its row applies.
 | N 选 1 decisions with JEV | <https://beatapi.io/skill-refs/recipes/decide-with-jev.md> |
 | Edit or extend a video with Seedance 2.5 (`task_type`) | <https://beatapi.io/skill-refs/recipes/seedance-video-edit.md> |
 | 音乐 / 歌曲 / 写歌 / Suno: write a song, then extend it, split stems or convert to WAV (`model:suno-v6`, `action`) | <https://beatapi.io/skill-refs/recipes/music-song.md> |
+| Lyria / 谷歌音乐 / Flow Music: a song with a set length and tempo, then extend or rewrite a section (`model:lyria-3.5`, `action`) | <https://beatapi.io/skill-refs/recipes/music-lyria.md> |
 
 Direct APIs for developers (`/v1/responses`, `/v1/systemone`, OpenAPI):
 <https://docs.beatapi.io/>. Source: <https://github.com/BeatAPI/beatapi-skill>.

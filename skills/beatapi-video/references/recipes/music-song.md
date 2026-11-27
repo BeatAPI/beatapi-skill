@@ -1,6 +1,6 @@
 # Recipe: write a song, then extend it, split stems or convert to WAV (Suno v6)
 
-For 音乐, 歌曲, 写歌, "make me a song", lyrics or stems. Search `suno` or `音乐` to get the reference, which is `model:suno-v6` (also `model:suno-v6-mini` and `model:suno-v6-wild`, same input and prices). Inspect it before a paid run: the input schema and the price per action are live. Full reference: <https://docs.beatapi.io/audio-api>.
+For 音乐, 歌曲, 写歌, "make me a song", lyrics or stems. Search `suno` or `音乐` to get the reference, which is `model:suno-v6` (also `model:suno-v6-mini` and `model:suno-v6-wild`, same input and prices). Inspect it before a paid run: the input schema and the price per action are live. Full reference: <https://docs.beatapi.io/audio-api/suno-v6>.
 
 One reference does everything. `input.action` picks the operation and defaults to `generate`; each action takes only its own fields, and an extra field is a 400 that names it. A call returns one or two songs for one fixed price, whatever the song length: `generate`, `extend`, `cover`, `add_vocals`, `add_instrumental`, `mashup` and `speech` cost $0.10; `lyrics`, `boost_style` and `convert_wav` $0.0033; `separate` $0.084 (two tracks), $0.42 (twelve stems) or $0.17 (one stem); `persona`, `midi` and `cover_image` are free.
 

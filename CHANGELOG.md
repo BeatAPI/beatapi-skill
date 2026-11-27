@@ -9,6 +9,10 @@
 
 ### Added
 
+- Lyria in the music recipe (trigger words Lyria, Flow Music): `model:lyria-3.5` and
+  `model:lyria-3-pro` with `generate` (description and/or lyrics, `duration`, `bpm`, `seed`),
+  `extend`, `replace_section` and `lyrics`, their prices, that length is guidance, and that a
+  follow-up stays in its family.
 - Music recipe (`recipes/music-song.md`, trigger words 音乐, 歌曲, 写歌, Suno): write a song with
   `model:suno-v6` in simple or custom mode, then extend it, split stems or convert it to WAV
   through `action`, with the per-call prices, the follow-up fields (`source_task_id`, `audio_id`),
